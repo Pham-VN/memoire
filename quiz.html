@@ -1,0 +1,37 @@
+ <!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, inital-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="quiz.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <title>Quiz App</title>
+    </head>
+    <body>
+
+        <div class="container">
+            <div id="question-container" class="hide">
+                <div id="numbreOfQuestion"></div>
+                <div id="timer">10:00</div>
+                <div id="question"></div>
+                <div id="phrase">Phrase</div>
+                <div id="reponses-buttons" class="btn-gird">
+                </div>
+                <p id="timer2">00:00:00 </p>
+                <div class="w3-light-grey">
+                    <div id="myBar" class="w3-green" style="height:50px;width:0"></div>
+                </div>
+            </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn" style="margin-top: 5%;">Start</button>
+            <button id="valider-btn" class="valider-btn btn hide" style="margin-top: 5%;" onclick="stop()">Valider</button>
+            <button id="next-btn" class="next-btn btn hide" style="margin-top: 5%;">Next</button>
+            <p id="game-over" class="game-over hide">Game Over! </p>
+            <br/>
+            <button id="restart-btn" class="restart-btn btn hide">Restart</button>
+        </div>
+        </div>
+        <script src="quiz.js"></script>
+    </body>
+</html> 
