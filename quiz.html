@@ -18,19 +18,33 @@
                 <div id="phrase">Phrase</div>
                 <div id="reponses-buttons" class="btn-gird">
                 </div>
-                <p id="timer2">00:00:00 </p>
+                <!-- <p id="timer2">00:00:00 </p> -->
                 <div class="w3-light-grey">
                     <div id="myBar" class="w3-green" style="height:50px;width:0"></div>
                 </div>
             </div>
         <div class="controls">
             <button id="start-btn" class="start-btn btn" style="margin-top: 5%;">Start</button>
-            <button id="valider-btn" class="valider-btn btn hide" style="margin-top: 5%;" onclick="stop()">Valider</button>
-            <button id="next-btn" class="next-btn btn hide" style="margin-top: 5%;">Next</button>
+            <button id="valider-btn" class="valider-btn btn hide">Valider</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
             <p id="game-over" class="game-over hide">Game Over! </p>
             <br/>
             <button id="restart-btn" class="restart-btn btn hide">Restart</button>
         </div>
+        </div>
+        <div id="timeQuestionAttemps">
+            <table border="2" id="myTable" class="hide">
+                <thead class="thead-dark">
+                  <tr class="grid-container">
+                    <th class="grid-item">Question</th>
+                    <th class="grid-item">Temps</th>
+                    <th class="grid-item">Nombre d'essai</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody">
+                                                  
+                </tbody>
+              </table>
         </div>
         <script src="quiz.js"></script>
     </body>

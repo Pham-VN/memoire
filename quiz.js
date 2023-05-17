@@ -6,8 +6,9 @@ var validerButton = document.getElementById('valider-btn');
 
 // var displayContainer = document.getElementB
 // Question, answer, score
+
 var questionContainerElement = document.getElementById('question-container');
-var shuffleQuestions, currentQuestionIndex, scoreCount;
+var shuffleQuestions, scoreCount;
 var questionElement = document.getElementById('question');
 var numbreOfQuestion = document.getElementById('numbreOfQuestion');
 var scoreCurrent = document.getElementById('score');
@@ -20,6 +21,9 @@ var nombreEssai = 3;
 var inputs = document.getElementsByTagName('input');
 var label = document.getElementsByTagName('label');
 var checkValue;
+var currentQuestionIndex = 1;
+var tableBody = document.getElementById('tableBody');
+var myTable = document.getElementById('myTable');
 
 // Timer
 var timer = document.getElementById("timer");
@@ -29,6 +33,7 @@ var timeOutMinutes = 10;
 
 //START GAME
 startButton.addEventListener('click',startGame);
+startButton.addEventListener('click',start);
 
 //Restart Button 
 restartButton.addEventListener("click", () => {
@@ -47,64 +52,10 @@ nextButton.addEventListener('click', () => {
   setNextQuestion()
 })
 
-function stopWatch() {
-  seconds--;
-  if(seconds === -1) {
-    minutes = timeOutMinutes - 1;
-    seconds = 59;
-    timeOutMinutes = minutes;
-  } 
-  let m = minutes < 10 ? "0" + minutes : minutes;
-  let s = seconds < 10 ? "0" + seconds : seconds;
-
-  timer.innerHTML = m + ":" + s; 
-
-  if (m <= 0) {
-    questionContainerElement.classList.add('hide');
-    gameOver.classList.remove('hide');
-    restartButton.classList.remove('hide');
-  }
-
-}
-
-// COMPTER DE TEMPS
-var ret = document.getElementById("timer2");
-let counter = 0;
-let interval;
-
-function stop() {
-  clearInterval(interval);
-  startButton.disabled = false;
-}
-
-function convertSec(cnt) {
-  let sec = cnt % 60;
-  let min = Math.floor(cnt / 60);
-  if (sec < 10) {
-    if (min < 10) {
-      return "0" + min + ":0" + sec;
-    } else {
-      return min + ":0" + sec;
-    }
-  } else if ((min < 10) && (sec >= 10)) {
-    return "0" + min + ":" + sec;
-  } else {
-    return min + ":" + sec;
-  }
-}
-
-function start() {
-  startButton.disabled = true;
-  interval = setInterval(function() {
-    ret.innerHTML = convertSec(counter++); // timer start counting here...
-  }, 1000);
-}
-
-
-startButton.addEventListener('click',start);
-
 
 function startGame() {
+
+    // console.log(currentQuestionIndex);
     
     // cacher le button Start
     startButton.classList.add('hide');
@@ -112,7 +63,7 @@ function startGame() {
     // Mélanger des questions
     shuffleQuestions = questions.sort(() => Math.random() -.5);
     //
-    currentQuestionIndex = 0;
+    // currentQuestionIndex = 1;
     scoreCount = 0;
 
     //Faire apparaître question et des réponses
@@ -122,8 +73,13 @@ function startGame() {
 }
 
 function setNextQuestion() {
+  // ret.innerHTML = "00:00:00";
+  counter = 0; 
   nombreEssai = 3;
   annonce.innerHTML = "";
+
+  nextButton.addEventListener('click',start);
+
 
     if(currentQuestionIndex >= shuffleQuestions.length) { 
       // showScore() ;      
@@ -170,59 +126,36 @@ function showQuestionAndPhrase(question) {
 
 }
 
-function replaceCharactere(to_replace,firstReplacement,lastReplacement,str) {
-  var required_string;
-
-  var keyWord = str.substring(str.indexOf('*')+2,str.lastIndexOf("*")-1);
-  var etoile = str.substring(str.indexOf('**'),str.lastIndexOf("*")+2);
-  var string_after_spliting = etoile.split(to_replace);
-
-  for (let i = 0; i < string_after_spliting.length; i++) {
-    if(i === 0) {
-      required_string = firstReplacement + keyWord+lastReplacement;
-      var finir = str.replace(etoile,required_string)
-      return finir;
-    }
-  }
-}
-
-function displayText(str,element) {
-  var displayQuestion = replaceCharactere("**","<span class='KeyWord'> "," </span> ",str)
-  element.innerHTML = displayQuestion;
-}
-
-function resetState() {
-  nextButton.classList.add('hide');
-  while(answerButtonsElement.firstChild) {
-    answerButtonsElement.removeChild
-    (answerButtonsElement.firstChild)
-  }
-}
-
 function checkAnwers() {
         
-        for (i = 0; i < inputs.length; i++) {
-          if(inputs[i].checked){
-            checkValue = inputs[i].value;
-            if(checkValue === "true") {
-              scoreCount++;
-              progresseBar.style.width = (scoreCount/shuffleQuestions.length)*100 + "%"; 
-              label[i].style.backgroundColor = "#83c25f";
-              annonce.innerHTML = "Bravo!";
-              questionContainerElement.appendChild(annonce);
-              validerButton.classList.add('hide');
-              nextButton.classList.remove('hide');
-
-              // Todo : ajouter onclick au button Valider
-            }
-            else {
-              label[i].style.backgroundColor = "red";
-              numbreAttemp();
-            }
+  for (i = 0; i < inputs.length; i++) {
+    if(inputs[i].checked){
+      checkValue = inputs[i].value;
+      if(checkValue === "true") {
+        // Augumenter le score
+        scoreCount++;
+        // Présenter la progression avec le Bar.
+        progresseBar.style.width = (scoreCount/shuffleQuestions.length)*100 + "%"; 
+        // Ajouter la coleur correct
+        label[i].style.backgroundColor = "#83c25f";
+        // Annoncer Bravo
+        annonce.innerHTML = "Bravo!";
+        questionContainerElement.appendChild(annonce);
+        // Faire disparaître le button valider
+        validerButton.classList.add('hide');
+        // Faire appaître le button Next
+        nextButton.classList.remove('hide');
+        // Stop compter le temps que le joueur a joué pour chaque question
+        validerButton.onclick = stop();
         }
-          }
-
+      else {
+        label[i].style.backgroundColor = "red";
+        numbreAttemp();
+      }
+  }
     }
+
+}
 
 function showScore() {
   resetState();
@@ -247,36 +180,164 @@ function restartQuiz() {
     restartButton.classList.remove('hide');
 
     restartButton.addEventListener("click", () => {
-      startGame();
-    });
+    startGame();
+  });
+
+  }
+}
+
+function resetState() {
+  nextButton.classList.add('hide');
+  while(answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild
+    (answerButtonsElement.firstChild)
+  }
+}
+
+function displayText(str,element) {
+  var displayQuestion = replaceCharactere("**","<span class='KeyWord'> "," </span> ",str)
+  element.innerHTML = displayQuestion;
+}
+
+function replaceCharactere(to_replace,firstReplacement,lastReplacement,str) {
+  var required_string;
+
+  var keyWord = str.substring(str.indexOf('*')+2,str.lastIndexOf("*")-1);
+  var etoile = str.substring(str.indexOf('**'),str.lastIndexOf("*")+2);
+  var string_after_spliting = etoile.split(to_replace);
+
+  for (let i = 0; i < string_after_spliting.length; i++) {
+    if(i === 0) {
+      required_string = firstReplacement + keyWord+lastReplacement;
+      var finir = str.replace(etoile,required_string)
+      return finir;
+    }
+  }
+}
+
+function stopWatch() {
+  seconds--;
+  if(seconds === -1) {
+    minutes = timeOutMinutes - 1;
+    seconds = 59;
+    timeOutMinutes = minutes;
+  } 
+  let m = minutes < 10 ? "0" + minutes : minutes;
+  let s = seconds < 10 ? "0" + seconds : seconds;
+
+  timer.innerHTML = m + ":" + s; 
+
+  if (m <= 0) {
+    questionContainerElement.classList.add('hide');
+    gameOver.classList.remove('hide');
+    restartButton.classList.remove('hide');
+  }
 
 }
+
+// COMPTER DE TEMPS
+// var ret = document.getElementById("timer2");
+var counter = 0;
+var interval;
+var endTime; 
+var arrayTimeQuestionAttemp = [];
+var listTimeQuestionAttemp = [];
+
+function stop() {
+
+  listTimeQuestionAttemp = [];
+
+  endTime = convertSec(counter++);
+
+  listTimeQuestionAttemp.push(currentQuestionIndex);
+  listTimeQuestionAttemp.push(endTime);
+  listTimeQuestionAttemp.push(nombreEssai);
+
+  arrayTimeQuestionAttemp.push(listTimeQuestionAttemp);
+
+  creatTable(arrayTimeQuestionAttemp,listTimeQuestionAttemp);
+
+  clearInterval(interval);
+  startButton.disabled = false;
 }
 
+function creatTable(array, list) {
+
+  myTable.classList.remove("hide");
+
+  for (var i = 0; i < array.length; i++) {
+
+    var tr = document.createElement('TR');
+    // tr.classList.add('grid-container')
+
+
+    for (var j = 0; j < list.length; j++) {
+
+      var td = document.createElement('TD');
+      td.classList.add('grid-item')
+      td.appendChild(document.createTextNode(array[i][j]));
+      tr.appendChild(td);
+
+    }
+  }
+
+  tableBody.appendChild(tr);
+
+}
+
+
+function convertSec(cnt) {
+  let sec = cnt % 60;
+  let min = Math.floor(cnt / 60);
+  if (sec < 10) {
+    if (min < 10) {
+      return "0" + min + ":0" + sec;
+    } else {
+      return min + ":0" + sec;
+    }
+  } else if ((min < 10) && (sec >= 10)) {
+    return "0" + min + ":" + sec;
+  } else {
+    return min + ":" + sec;
+  }
+}
+
+function start() {
+  startButton.disabled = true;
+  interval = setInterval(function() {
+    // ret.innerHTML = "Pour la question " + currentQuestionIndex + ", le temps que vous avez passé est " + convertSec(counter++) + "Vous avez essayé " + nombreEssai; // timer start counting here...
+    convertSec(counter++);
+  }, 1000);
+}
+
+
+ 
 function numbreAttemp() {
+
     nombreEssai -= 1;
     
-    if(nombreEssai>1) {
+    if(nombreEssai > 0) {
       annonce.innerHTML = "Vous avez encore " + nombreEssai +" essais !";
       questionContainerElement.appendChild(annonce);
-    } else if (nombreEssai === 1) {
-      annonce.innerHTML = "Vous n'avez qu'un seul essai !";
-      questionContainerElement.appendChild(annonce);
+
     } else {
 
     // désactivité des buttons
-
+    
     for (var input of inputs) {
       input.disabled = true; 
     }
-
+    
       annonce.innerHTML = "Désolé(e)! Vous duvez passer à d'autre question!";
+      validerButton.onclick = stop();
       validerButton.classList.add('hide');
       nextButton.classList.remove('hide');
-    
+
     }
 
 }
+
+
 var questions = [{
     question: "Donner la partie du discours du mot **garantir** dans la phrase:",
     phrase: "Pour **garantir** une concurrence loyale , il convient que ces mesures soient prises au niveau international . ",
