@@ -1,0 +1,27 @@
+# generator = UDPipe 2, https://lindat.mff.cuni.cz/services/udpipe
+# udpipe_model = french-gsd-ud-2.10-220711
+# udpipe_model_licence = CC BY-NC-SA
+# newdoc
+# newpar
+# sent_id = 1
+# text = Pour garantir une concurrence loyale , il convient que ces mesures soient prises au niveau international .
+1	Pour	pour	ADP	_	_	2	mark	_	TokenRange=0:4
+2	garantir	garantir	VERB	_	VerbForm=Inf	8	advcl	_	TokenRange=5:13
+3	une	un	DET	_	Definite=Ind|Gender=Fem|Number=Sing|PronType=Art	4	det	_	TokenRange=14:17
+4	concurrence	concurrence	NOUN	_	Gender=Fem|Number=Sing	2	obj	_	TokenRange=18:29
+5	loyale	loyal	ADJ	_	Gender=Fem|Number=Sing	4	amod	_	TokenRange=30:36
+6	,	,	PUNCT	_	_	2	punct	_	TokenRange=37:38
+7	il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	8	expl:subj	_	TokenRange=39:41
+8	convient	convenir	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	TokenRange=42:50
+9	que	que	SCONJ	_	_	13	mark	_	TokenRange=51:54
+10	ces	ce	DET	_	Number=Plur|PronType=Dem	11	det	_	TokenRange=55:58
+11	mesures	mesure	NOUN	_	Gender=Fem|Number=Plur	13	nsubj:pass	_	TokenRange=59:66
+12	soient	être	AUX	_	Mood=Sub|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin	13	aux:pass	_	TokenRange=67:73
+13	prises	prendre	VERB	_	Gender=Fem|Number=Plur|Tense=Past|VerbForm=Part	8	csubj	_	TokenRange=74:80
+14-15	au	_	_	_	_	_	_	_	TokenRange=81:83
+14	à	à	ADP	_	_	16	case	_	_
+15	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	16	det	_	_
+16	niveau	niveau	NOUN	_	Gender=Masc|Number=Sing	13	obl:mod	_	TokenRange=84:90
+17	international	international	ADJ	_	Gender=Masc|Number=Sing	16	amod	_	TokenRange=91:104
+18	.	.	PUNCT	_	_	8	punct	_	SpacesAfter=\s\r\n|TokenRange=105:106
+

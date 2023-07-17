@@ -4,20 +4,22 @@ var nextButton = document.getElementById('next-btn');
 var restartButton = document.getElementById('restart-btn');
 var validerButton = document.getElementById('valider-btn');
 
+
 // var displayContainer = document.getElementB
 // Question, answer, score
-
+var modifie_fontCouleur_fontSize = document.getElementById('modifie_fontCouleur_fontSize');
 var questionContainerElement = document.getElementById('question-container');
 var shuffleQuestions, scoreCount;
 var questionElement = document.getElementById('question');
 var numbreOfQuestion = document.getElementById('numbreOfQuestion');
 var scoreCurrent = document.getElementById('score');
+var announceScore = document.getElementById('announceScore');
 var progresseBar = document.getElementById('myBar');
 var phraseElement = document.getElementById('phrase');
 var answerButtonsElement = document.getElementById('reponses-buttons');
-var gameOver = document.getElementById('game-over');
+// var gameOver = document.getElementById('game-over');
 var annonce = document.createElement('p');
-var nombreEssai = 3;
+var maximumAttemps = 3;
 var inputs = document.getElementsByTagName('input');
 var label = document.getElementsByTagName('label');
 var checkValue;
@@ -31,19 +33,17 @@ let [seconds, minutes] = [0,0];
 let timerId;
 var timeOutMinutes = 10;
 
+var quizEnded = false;
+
 //START GAME
 startButton.addEventListener('click',startGame);
 startButton.addEventListener('click',start);
+startButton.addEventListener("click", function(){
+  modifie_fontCouleur_fontSize.style.display = "block";
+}); 
 
 //Restart Button 
-restartButton.addEventListener("click", () => {
-  startGame();
-})
-
-//Start a timer
-startButton.addEventListener('click',function() {
-    timerId = setInterval(stopWatch,1000);
-});
+restartButton.addEventListener("click",clearScrrenAndRestartGame);
 
 // Next Button
 nextButton.addEventListener('click', () => {
@@ -55,7 +55,14 @@ nextButton.addEventListener('click', () => {
 
 function startGame() {
 
+    timerId = setInterval(stopWatch,1000);
+
+    timer.innerHTML = "10:00"; 
+
     // console.log(currentQuestionIndex);
+    [seconds, minutes] = [0,0];
+    timeOutMinutes = 10;
+
     
     // cacher le button Start
     startButton.classList.add('hide');
@@ -73,21 +80,30 @@ function startGame() {
 }
 
 function setNextQuestion() {
-  // ret.innerHTML = "00:00:00";
+
   counter = 0; 
-  nombreEssai = 3;
   annonce.innerHTML = "";
+  attempCurrent = 0;
 
   nextButton.addEventListener('click',start);
 
 
     if(currentQuestionIndex >= shuffleQuestions.length) { 
-      // showScore() ;      
-      restartQuiz();
+      
+      questionContainerElement.classList.add('hide');
+      clearInterval(timerId);
+
+      showScore();
+    
+      restartButton.classList.remove('hide');
+
+
     } else {
       showQuestionAndPhrase(shuffleQuestions[currentQuestionIndex]);
     }
 }
+
+var reponseCorrect;
 
 function showQuestionAndPhrase(question) {
     
@@ -104,7 +120,7 @@ function showQuestionAndPhrase(question) {
   question.reponses.forEach(reponse => {
 
     var reponseText = reponse.texte;
-    var reponseCorrect = reponse.correct;
+    reponseCorrect = reponse.correct;
 
     var input = document.createElement('input');
     var label = document.createElement('label');
@@ -132,12 +148,14 @@ function checkAnwers() {
     if(inputs[i].checked){
       checkValue = inputs[i].value;
       if(checkValue === "true") {
+        attempCurrent++;
         // Augumenter le score
         scoreCount++;
         // Présenter la progression avec le Bar.
         progresseBar.style.width = (scoreCount/shuffleQuestions.length)*100 + "%"; 
+        progresseBar.classList = "w3-green";
         // Ajouter la coleur correct
-        label[i].style.backgroundColor = "#83c25f";
+        label[i].classList= "correct";
         // Annoncer Bravo
         annonce.innerHTML = "Bravo!";
         questionContainerElement.appendChild(annonce);
@@ -147,9 +165,12 @@ function checkAnwers() {
         nextButton.classList.remove('hide');
         // Stop compter le temps que le joueur a joué pour chaque question
         validerButton.onclick = stop();
+        
         }
       else {
-        label[i].style.backgroundColor = "red";
+        label[i].classList= "incorrect";
+        progresseBar.style.width = (scoreCount/shuffleQuestions.length)*100 + "%"; 
+        progresseBar.classList = "w3-red";
         numbreAttemp();
       }
   }
@@ -158,33 +179,44 @@ function checkAnwers() {
 }
 
 function showScore() {
-  resetState();
+  // resetState();
   if(scoreCount < shuffleQuestions.length/3) {
-    questionContainerElement.innerText = "Vous êtes au niveau débutant, " + "vous avez obtenu "+ scoreCount +" sur " + shuffleQuestions.length + " questions.";
+    announceScore.innerText = "Vous êtes au niveau débutant, " + "vous avez eu "+ scoreCount +" sur " + shuffleQuestions.length + " bonnes réponses.";
   } else if (scoreCount < shuffleQuestions.length/2) {
-    questionContainerElement.innerText = "Vous êtes au niveau intermédiaire, il faut encore travailler! " + "vous avez obtenu "+ scoreCount +" sur " + shuffleQuestions.length + " questions.";
+    announceScore.innerText = "Vous êtes au niveau intermédiaire, il faut encore travailler! " + "vous avez eu "+ scoreCount +" sur " + shuffleQuestions.length + " bonnes réponses.";
   } else if(scoreCount === shuffleQuestions.length){
-    questionContainerElement.innerText = "Bravo! " + "Vous avez obtenu "+ scoreCount +" sur " + shuffleQuestions.length + " questions.";
+    announceScore.innerText = "Bravo! " + "Vous avez eu "+ scoreCount +" sur " + shuffleQuestions.length + " bonnes réponses.";
   } else {
-    questionContainerElement.innerText = "Vous êtes au niveau avancé! " + "vous avez obtenu "+ scoreCount +" sur " + shuffleQuestions.length + " questions.";
+    announceScore.innerText = "Vous êtes au niveau avancé! " + "vous avez eu "+ scoreCount +" sur " + shuffleQuestions.length + " bonnes réponses.";
   } 
 }
 
-function restartQuiz() {
-  if(currentQuestionIndex >= shuffleQuestions.length) { 
-    showScore();
 
-    currentQuestionIndex = 0;
+// Clear screen before restart game
+function clearScrrenAndRestartGame() {
+  
+    // clear Ecran avant de remttre le jeu
+  
+    myTable.innerHTML = "";
+    questionElement.innerHTML = "";
+    phraseElement.innerHTML = "";
+    answerButtonsElement.innerHTML = "";
+    announceScore.innerHTML = "";
+
+    progresseBar.style.width = "0%";  
+  
+    validerButton.classList.add('hide');
+    restartButton.classList.add('hide');
+    
+
+    currentQuestionIndex = 1;
     scoreCount = 0;
+  
 
-    restartButton.classList.remove('hide');
-
-    restartButton.addEventListener("click", () => {
+    // restart game
     startGame();
-  });
-
-  }
 }
+
 
 function resetState() {
   nextButton.classList.add('hide');
@@ -194,15 +226,18 @@ function resetState() {
   }
 }
 
+// Mettre couleur pour le mot keyWord
 function displayText(str,element) {
   var displayQuestion = replaceCharactere("**","<span class='KeyWord'> "," </span> ",str)
   element.innerHTML = displayQuestion;
 }
 
+var keyWord;
+
 function replaceCharactere(to_replace,firstReplacement,lastReplacement,str) {
   var required_string;
 
-  var keyWord = str.substring(str.indexOf('*')+2,str.lastIndexOf("*")-1);
+  keyWord = str.substring(str.indexOf('*')+2,str.lastIndexOf("*")-1);
   var etoile = str.substring(str.indexOf('**'),str.lastIndexOf("*")+2);
   var string_after_spliting = etoile.split(to_replace);
 
@@ -215,24 +250,36 @@ function replaceCharactere(to_replace,firstReplacement,lastReplacement,str) {
   }
 }
 
+// Lorsque le temps finit, l'utilisateur doit arrêter de jouer, et il va réjour s'il veut.
 function stopWatch() {
+    
   seconds--;
-  if(seconds === -1) {
-    minutes = timeOutMinutes - 1;
-    seconds = 59;
-    timeOutMinutes = minutes;
-  } 
-  let m = minutes < 10 ? "0" + minutes : minutes;
-  let s = seconds < 10 ? "0" + seconds : seconds;
 
-  timer.innerHTML = m + ":" + s; 
+    if(seconds === -1) {
+      minutes = timeOutMinutes - 1;
+      seconds = 59;
+      timeOutMinutes = minutes;
+    } 
+    let m = minutes < 10 ? "0" + minutes : minutes;
+    let s = seconds < 10 ? "0" + seconds : seconds;
 
-  if (m <= 0) {
+    timer.innerHTML = m + ":" + s; 
+
+  if (m < 0) {
+
+     // quand le temps s'arrête, on cache les questions le bouton valider et le bouton next
+    
+    showScore();
+
     questionContainerElement.classList.add('hide');
-    gameOver.classList.remove('hide');
-    restartButton.classList.remove('hide');
-  }
 
+    validerButton.classList.add('hide');  
+    nextButton.classList.add('hide');
+    clearInterval(timerId);
+    
+    restartButton.classList.remove('hide');
+    
+  }
 }
 
 // COMPTER DE TEMPS
@@ -251,7 +298,9 @@ function stop() {
 
   listTimeQuestionAttemp.push(currentQuestionIndex);
   listTimeQuestionAttemp.push(endTime);
-  listTimeQuestionAttemp.push(nombreEssai);
+  listTimeQuestionAttemp.push(attempCurrent);
+  listTimeQuestionAttemp.push(keyWord);
+  listTimeQuestionAttemp.push(checkValue);
 
   arrayTimeQuestionAttemp.push(listTimeQuestionAttemp);
 
@@ -268,13 +317,11 @@ function creatTable(array, list) {
   for (var i = 0; i < array.length; i++) {
 
     var tr = document.createElement('TR');
-    // tr.classList.add('grid-container')
 
 
     for (var j = 0; j < list.length; j++) {
 
       var td = document.createElement('TD');
-      td.classList.add('grid-item')
       td.appendChild(document.createTextNode(array[i][j]));
       tr.appendChild(td);
 
@@ -310,25 +357,29 @@ function start() {
   }, 1000);
 }
 
+var attempCurrent = 0;
 
- 
+var nombreEssaisRestants;
+
+
 function numbreAttemp() {
 
-    nombreEssai -= 1;
-    
-    if(nombreEssai > 0) {
-      annonce.innerHTML = "Vous avez encore " + nombreEssai +" essais !";
+  attempCurrent += 1;
+  nombreEssaisRestants = maximumAttemps - attempCurrent;
+
+  if(nombreEssaisRestants > 0) {
+     
+      annonce.innerHTML = "Vous avez encore " + nombreEssaisRestants +" essais !";
       questionContainerElement.appendChild(annonce);
 
     } else {
-
     // désactivité des buttons
     
     for (var input of inputs) {
       input.disabled = true; 
     }
     
-      annonce.innerHTML = "Désolé(e)! Vous duvez passer à d'autre question!";
+      annonce.innerHTML = "Désolé(e)! Vous devez passer à d'autre question!";
       validerButton.onclick = stop();
       validerButton.classList.add('hide');
       nextButton.classList.remove('hide');
@@ -671,3 +722,38 @@ var questions = [{
   }]
 
 
+// chosir couleur de fond
+
+var colorSelect = document.getElementById('colorSelect');
+var colorText = document.getElementsByClassName('Textcouleur');
+colorSelect.addEventListener('change', function() {
+  var selectedColor = colorSelect.value;
+  document.body.style.backgroundColor = selectedColor;
+  if (colorSelect.value === "#000000"){
+    for (let i = 0; i < colorText.length; i++) {
+      colorText[i].style.color = "#FFFFFF";
+    }
+  } else {
+    for (let i = 0; i < colorText.length; i++) {
+      colorText[i].style.color = "#000000";
+    }  }
+});
+
+// choisir la taille de police
+
+var fontSize = document.getElementById('fontSize');
+
+
+fontSize.addEventListener('change', function() {
+  var selectedFontSize = fontSize.value;
+  document.getElementById('valueSize').innerHTML = selectedFontSize;
+  document.getElementById('bodySize').style.fontSize = selectedFontSize + 'px';
+});
+
+// Dark mode
+
+var checkbox = document.getElementById("checkbox")
+
+checkbox.addEventListener("change", () => {
+  document.body.classList.toggle("dark")
+})

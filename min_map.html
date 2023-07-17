@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Arbre syntaxique</title>
+    <style>
+      /* Styles CSS pour l'arbre syntaxique */
+      .syntax-tree {
+        list-style-type: none;
+        padding-left: 20px;
+      }
+
+      .syntax-tree li:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -10px;
+        border-left: 1px solid #ccc;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="syntaxTree"></div>
+
+    <script>
+      class Node {
+        constructor(value) {
+          this.value = value;
+          this.children = [];
+        }
+
+        addChild(node) {
+          this.children.push(node);
+        }
+      }
+
+      function buildSyntaxTree(expression, parentElement) {
+        const rootNode = new Node(expression);
+        const parentNode = document.createElement("ul");
+        parentNode.classList.add("syntax-tree");
+        const liNode = document.createElement("li");
+        liNode.textContent = expression;
+        parentNode.appendChild(liNode);
+        parentElement.appendChild(parentNode);
+
+        // Construire les nœuds enfants
+        // Code d'analyse et de construction de l'arbre...
+
+        return rootNode;
+      }
+
+      // Utilisation de l'exemple
+      const syntaxTreeElement = document.getElementById("syntaxTree");
+      const rootNode = buildSyntaxTree("2 * (3 + 4)", syntaxTreeElement);
+    </script>
+  </body>
+</html>
