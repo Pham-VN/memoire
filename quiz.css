@@ -28,6 +28,7 @@ body {
     box-shadow: 0 0 10px 2px;
     padding: 20px;
     margin-left: -9%;
+    margin-top: 3%;
 }
 .btn-gird {
     display: grid;
@@ -209,46 +210,6 @@ select {
     border: #000, 1px solid;
   }
 
-
-body.dark {
-    background-color: #292c35;
-    color: #fff;
-} /* #9b59b6 */
-
-.checkbox {
-    opacity: 0;
-    position: absolute;
-  }
-
-
-.checkbox-label {
-    background-color: #111;
-    width: 55px;
-    height: 29px;
-    border-radius: 50px;
-    position: relative;
-    padding: 5px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 78%;
-  }
-  
-  .checkbox-label .ball {
-    background-color: #fff;
-    width: 22px;
-    height: 22px;
-    position: absolute;
-    left: 2px;
-    top: 2px;
-    border-radius: 50%;
-    transition: transform 0.2s linear;
-  }
-  
-  .checkbox:checked + .checkbox-label .ball {
-    transform: translateX(24px);
-  }
 
 input[type=color]{
     width: 19%;

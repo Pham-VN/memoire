@@ -14,7 +14,7 @@
     </head>
     <body id="bodySize">
 
-        <div class="container">
+        <div class="container" id="contenuPrincipal">
             <div id="question-container" class="hide">
 
                   <span id="numbreOfQuestion"></span>
@@ -23,22 +23,25 @@
                   <!-- change size texte  -->
                   <p style="margin-left: 16%;margin-bottom:5%">
 
-                      <!-- backgroundColor -->
-                  <span>Background Color</span>
-                  <input type="color" id="background-unchecked" value="#ffffff" class="color_picker">
+                          <!-- backgroundColor -->
+                          <span>Background Color</span>
+                          <input type="color" id="background-unchecked" value="#ffffff" class="color_picker">
 
-                  <!-- font-size -->
+                          <!-- Color Texte -->
+                          <span>Texte color</span>
+                          <input type="color" id="color-unchecked" value="#ffffff" class="color_picker">
+                  </p>
+
+               
+                  <p style="margin-left: 16%;">
+
+                       <!-- font-size -->
                     <span>Text size</span>
-                  <input type="range" min="16" max="30" value="22px" id="fontSize" class="range">
-                  <span id="valueSize">22px</span>
-
-                <!-- mode jour et nuit -->
-                  <input type="checkbox" class="checkbox" id="checkbox">
-                  <!-- style="margin-top: -8%;" -->
-                  <label for="checkbox" class="checkbox-label"> 
-                    <span class="ball"></span>
-                  </label>
-                
+                          <input type="range" min="16" max="30" value="22px" id="fontSize" class="range">
+                          <span id="valueSize">22px</span>      
+                   
+                          <!-- mode jour et nuit -->
+                         
                 </p>
                 
                 <p id="question" style="line-height:1.2;"></p>
@@ -58,7 +61,6 @@
             <button id="start-btn" class="start-btn btn" style="margin-top: 5%;">Start</button>
             <button id="valider-btn" class="valider-btn btn hide">Valider</button>
             <button id="next-btn" class="next-btn btn hide">Next</button>
-            <!-- <p id="game-over" class="game-over hide">Game Over! </p> -->
             <br/>
             <button id="restart-btn" class="restart-btn btn hide">Restart</button>
         </div>

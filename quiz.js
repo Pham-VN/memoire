@@ -20,7 +20,7 @@ var answerButtonsElement = document.getElementById('reponses-buttons');
 // var gameOver = document.getElementById('game-over');
 var annonce = document.createElement('p');
 var maximumAttemps = 3;
-var inputs = document.getElementsByTagName('input');
+var inputsReponds = document.getElementsByClassName('inputReponses');
 var label = document.getElementsByTagName('label');
 var checkValue;
 var currentQuestionIndex = 1;
@@ -38,9 +38,9 @@ var quizEnded = false;
 //START GAME
 startButton.addEventListener('click',startGame);
 startButton.addEventListener('click',start);
-startButton.addEventListener("click", function(){
-  modifie_fontCouleur_fontSize.style.display = "block";
-}); 
+// startButton.addEventListener("click", function(){
+//   modifie_fontCouleur_fontSize.style.display = "block";
+// }); 
 
 //Restart Button 
 restartButton.addEventListener("click",clearScrrenAndRestartGame);
@@ -126,7 +126,10 @@ function showQuestionAndPhrase(question) {
     var label = document.createElement('label');
     input.setAttribute("type", "radio"); 
     input.setAttribute("name", "answer"); 
+    input.setAttribute("class", "inputReponses");
     input.setAttribute("value", reponseCorrect); 
+
+
 
     // input.classList.add('btn');
     label.innerHTML = reponseText;
@@ -144,9 +147,9 @@ function showQuestionAndPhrase(question) {
 
 function checkAnwers() {
         
-  for (i = 0; i < inputs.length; i++) {
-    if(inputs[i].checked){
-      checkValue = inputs[i].value;
+  for (i = 0; i < inputsReponds.length; i++) {
+    if(inputsReponds[i].checked){
+      checkValue = inputsReponds[i].value;
       if(checkValue === "true") {
         attempCurrent++;
         // Augumenter le score
@@ -375,7 +378,7 @@ function numbreAttemp() {
     } else {
     // désactivité des buttons
     
-    for (var input of inputs) {
+    for (var input of inputsReponds) {
       input.disabled = true; 
     }
     
@@ -723,20 +726,24 @@ var questions = [{
 
 
 // chosir couleur de fond
+var contenuPrincipal = document.getElementById('contenuPrincipal');
 
-var colorSelect = document.getElementById('colorSelect');
-var colorText = document.getElementsByClassName('Textcouleur');
+var colorSelect = document.getElementById('background-unchecked');
 colorSelect.addEventListener('change', function() {
   var selectedColor = colorSelect.value;
-  document.body.style.backgroundColor = selectedColor;
-  if (colorSelect.value === "#000000"){
-    for (let i = 0; i < colorText.length; i++) {
-      colorText[i].style.color = "#FFFFFF";
-    }
-  } else {
-    for (let i = 0; i < colorText.length; i++) {
-      colorText[i].style.color = "#000000";
-    }  }
+  // document.body.style.backgroundColor = selectedColor;
+  contenuPrincipal.style.backgroundColor = selectedColor;
+
+});
+
+// choisir couleur de texte 
+
+var colorText = document.getElementById('color-unchecked');
+colorText.addEventListener('change', function() {
+  var selectedColorTexte = colorText.value;
+  // document.body.style.color = selectedColorTexte;
+  contenuPrincipal.style.color = selectedColorTexte;
+
 });
 
 // choisir la taille de police
@@ -750,10 +757,3 @@ fontSize.addEventListener('change', function() {
   document.getElementById('bodySize').style.fontSize = selectedFontSize + 'px';
 });
 
-// Dark mode
-
-var checkbox = document.getElementById("checkbox")
-
-checkbox.addEventListener("change", () => {
-  document.body.classList.toggle("dark")
-})
