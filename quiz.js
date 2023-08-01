@@ -68,7 +68,7 @@ function startGame() {
     startButton.classList.add('hide');
 
     // Mélanger des questions
-    shuffleQuestions = questions.sort(() => Math.random() -.5);
+    shuffleQuestions = quiz.sort(() => Math.random() -.5);
     //
     // currentQuestionIndex = 1;
     scoreCount = 0;
@@ -392,7 +392,7 @@ function numbreAttemp() {
 }
 
 
-var questions = [{
+var quiz = [{
     question: "Donner la partie du discours du mot **garantir** dans la phrase:",
     phrase: "Pour **garantir** une concurrence loyale , il convient que ces mesures soient prises au niveau international . ",
    reponses: [{
@@ -746,14 +746,111 @@ colorText.addEventListener('change', function() {
 
 });
 
+
+
 // choisir la taille de police
 
-var fontSize = document.getElementById('fontSize');
+var decreaseFontSize = document.getElementById('decrease-fontSize');
+var increaseFontSize = document.getElementById('increase-fontSize'); 
+var curentFontSize = document.getElementById('curent-fontSize');
+var fontSize = 14;
 
 
-fontSize.addEventListener('change', function() {
-  var selectedFontSize = fontSize.value;
-  document.getElementById('valueSize').innerHTML = selectedFontSize;
-  document.getElementById('bodySize').style.fontSize = selectedFontSize + 'px';
+function updateFontSize() {
+  document.getElementById('bodySize').style.fontSize = fontSize + 'px';
+  curentFontSize.innerHTML = fontSize;
+}
+
+
+increaseFontSize.addEventListener('click', function() {
+  fontSize += 1;
+  updateFontSize();
 });
 
+decreaseFontSize.addEventListener('click', function() {
+  fontSize -= 1;
+  updateFontSize();
+});
+
+// Interline
+
+var increaseInterligne = document.getElementById('increase-interligne');
+var decreaseInterligne = document.getElementById('decrease-interligne'); 
+var getCurrentValue = document.getElementById('current-value');
+var lineHeight = 1;
+
+
+function updateLineHeight() {
+  questionElement.style.lineHeight = lineHeight;
+  phraseElement.style.lineHeight = lineHeight;
+  answerButtonsElement.style.lineHeight = lineHeight;
+  getCurrentValue.innerHTML = lineHeight;
+}
+
+increaseInterligne.addEventListener('click', function() {
+  lineHeight += 0.5;
+  updateLineHeight();
+});
+
+decreaseInterligne.addEventListener('click', function() {
+  lineHeight -= 0.5;
+  updateLineHeight();});
+
+  // Text align
+
+var leftAlign = document.getElementById('left-align');
+var rightAlign = document.getElementById('right-align'); 
+
+leftAlign.addEventListener('click', function() {
+  document.getElementById('bodySize').style.textAlign = 'left';
+  answerButtonsElement.style.textAlign = 'left';
+  questionContainerElement.style.textAlign = 'left';
+});
+
+rightAlign.addEventListener('click', function() {
+  questionContainerElement.style.textAlign = 'right';
+  answerButtonsElement.style.textAlign = 'right';
+  document.getElementById('bodySize').style.textAlign = 'right';
+});
+
+//select-font-du-texte
+var selectFontDuTexte = document.getElementById('select-font-du-texte');
+
+selectFontDuTexte.addEventListener('click', function() {
+  document.getElementById('bodySize').style.fontFamily = selectFontDuTexte.value;
+})
+
+//mode jour et nuit
+var modeJour = document.getElementById('modeJour');
+var modeNuit = document.getElementById('modeNuit');
+
+function appliqueJour(){
+  document.getElementById('bodySize').style.backgroundColor = "rgb(255, 255, 255)";
+  document.getElementById('bodySize').style.color = "rgb(30, 30, 30)";
+}
+
+
+function appliqueNuit() {
+  document.getElementById('bodySize').style.color =  "rgb(255, 255, 255)";
+  document.getElementById('bodySize').style.backgroundColor = "rgb(30, 30, 30)";
+}
+
+modeJour.addEventListener('click',appliqueJour);
+modeNuit.addEventListener('click',appliqueNuit);
+
+var accessibilitySettings = document.getElementById('accessibility-settings');
+var accessibility = document.getElementById('accessibility');
+var hideAccessibilitySettings = document.getElementById('hide-accessibility-setting');
+
+
+function afficheAccessibility() {
+  accessibilitySettings.style.display = "block";
+}
+
+
+function cacheAccessibility() {
+  accessibilitySettings.style.display = "none";
+}
+
+accessibility.addEventListener('click', afficheAccessibility);
+hideAccessibilitySettings.addEventListener('click', cacheAccessibility);
