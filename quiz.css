@@ -22,11 +22,11 @@ body {
 
 .container {
     width: auto;
-    max-width: 50%;
+    max-width: 40%;
     border-radius: 15px;
     box-shadow: 0 0 10px 2px;
     padding: 20px;
-    margin-left: -9%;
+    margin-left: 6%;
     margin-top: 3%;
 }
 .btn-gird {
@@ -265,4 +265,29 @@ input[type=color]{
 #hide-accessibility-setting {
   background-color: yellow;
   margin-top: 3%;
+}
+#accessibility-settings {
+  background-color: rgba(92, 124, 241, 0.8);
+  padding: 10px;
+}
+#chart-container{
+ margin-left:2%;
+ margin-top:-9%;
+
+}
+#feedBack {
+  width: 823px;
+  background-color: #e3e8db;
+  margin-left: 4%;
+}
+#feedBack li {
+  list-style: none;
+}
+#feedBack li:after {
+  content: "\A";
+  white-space: pre;
+  line-height: 2em;
+font-size: 16px;
+font-family: sans-serif;
+margin-left: -2%;
 }

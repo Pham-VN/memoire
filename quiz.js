@@ -1,3 +1,12 @@
+// • La fonction "startGame()" pour démarrer le Quiz.
+// • La fonction "ShowQuestionAndPhrase()" pour afficher le nombre de questions, les phrases et les réponses.
+// • La fonction "setNextQuestion()" pour passer à la question suivante.
+// • La fonction "checkAnswers()" pour permettre à l'utilisateur de vérifier si sa réponse est correcte ou non.
+// • La fonction "showScore()" pour afficher le niveau obtenu par l'étudiant après avoir terminé le Quiz.
+// • La fonction "restartQuiz()" pour permettre à l'utilisateur de recommencer le Quiz.
+// • La fonction "stopWatch()" pour limiter le temps de réponse pour une liste de question.
+
+
 //Button
 var startButton = document.getElementById('start-btn');
 var nextButton = document.getElementById('next-btn');
@@ -24,26 +33,22 @@ var inputsReponds = document.getElementsByClassName('inputReponses');
 var label = document.getElementsByTagName('label');
 var checkValue;
 var currentQuestionIndex = 1;
-var tableBody = document.getElementById('tableBody');
-var myTable = document.getElementById('myTable');
+var chartContainer = document.getElementById('chartcontainer');
 
 // Timer
 var timer = document.getElementById("timer");
-let [seconds, minutes] = [0,0];
+let [seconds, minutes] = [0, 0];
 let timerId;
 var timeOutMinutes = 10;
 
 var quizEnded = false;
 
 //START GAME
-startButton.addEventListener('click',startGame);
-startButton.addEventListener('click',start);
-// startButton.addEventListener("click", function(){
-//   modifie_fontCouleur_fontSize.style.display = "block";
-// }); 
+startButton.addEventListener('click', startGame);
+startButton.addEventListener('click', start);
 
 //Restart Button 
-restartButton.addEventListener("click",clearScrrenAndRestartGame);
+restartButton.addEventListener("click", clearScrrenAndRestartGame);
 
 // Next Button
 nextButton.addEventListener('click', () => {
@@ -55,67 +60,68 @@ nextButton.addEventListener('click', () => {
 
 function startGame() {
 
-    timerId = setInterval(stopWatch,1000);
+  timerId = setInterval(stopWatch, 1000);
 
-    timer.innerHTML = "10:00"; 
+  timer.innerHTML = "10:00";
 
-    // console.log(currentQuestionIndex);
-    [seconds, minutes] = [0,0];
-    timeOutMinutes = 10;
+  // console.log(currentQuestionIndex);
+  [seconds, minutes] = [0, 0];
+  timeOutMinutes = 10;
 
-    
-    // cacher le button Start
-    startButton.classList.add('hide');
 
-    // Mélanger des questions
-    shuffleQuestions = quiz.sort(() => Math.random() -.5);
-    //
-    // currentQuestionIndex = 1;
-    scoreCount = 0;
+  // cacher le button Start
+  startButton.classList.add('hide');
 
-    //Faire apparaître question et des réponses
-    questionContainerElement.classList.remove('hide');
-    setNextQuestion();    
+  // Mélanger des questions
+  shuffleQuestions = quiz.sort(() => Math.random() - .5);
+  //
+  // currentQuestionIndex = 1;
+  scoreCount = 0;
+
+  //Faire apparaître question et des réponses
+  questionContainerElement.classList.remove('hide');
+
+  setNextQuestion();
 
 }
 
 function setNextQuestion() {
 
-  counter = 0; 
+  counter = 0;
   annonce.innerHTML = "";
   attempCurrent = 0;
 
-  nextButton.addEventListener('click',start);
+  nextButton.addEventListener('click', start);
 
 
-    if(currentQuestionIndex >= shuffleQuestions.length) { 
-      
-      questionContainerElement.classList.add('hide');
-      clearInterval(timerId);
+  if (currentQuestionIndex >= shuffleQuestions.length) {
 
-      showScore();
-    
-      restartButton.classList.remove('hide');
+    questionContainerElement.classList.add('hide');
+    clearInterval(timerId);
+
+    showScore();
+
+    restartButton.classList.remove('hide');
 
 
-    } else {
-      showQuestionAndPhrase(shuffleQuestions[currentQuestionIndex]);
-    }
+  } else {
+    showQuestionAndPhrase(shuffleQuestions[currentQuestionIndex]);
+  }
 }
 
 var reponseCorrect;
 
 function showQuestionAndPhrase(question) {
-    
+
   numbreOfQuestion.innerHTML = "Question " + currentQuestionIndex + "/" + shuffleQuestions.length;
 
   // // Question
-  var text =  question.question;
-  displayText(text,questionElement)
+  var text = question.question;
+  displayText(text, questionElement)
 
   //Phrase
   var phrase = question.phrase;
-  displayText(phrase,phraseElement)
+  displayText(phrase, phraseElement)
 
   question.reponses.forEach(reponse => {
 
@@ -124,41 +130,41 @@ function showQuestionAndPhrase(question) {
 
     var input = document.createElement('input');
     var label = document.createElement('label');
-    input.setAttribute("type", "radio"); 
-    input.setAttribute("name", "answer"); 
+    input.setAttribute("type", "radio");
+    input.setAttribute("name", "answer");
     input.setAttribute("class", "inputReponses");
-    input.setAttribute("value", reponseCorrect); 
+    input.setAttribute("value", reponseCorrect);
 
 
 
     // input.classList.add('btn');
     label.innerHTML = reponseText;
 
-    validerButton.addEventListener('click',checkAnwers);
+    validerButton.addEventListener('click', checkAnwers);
 
     answerButtonsElement.appendChild(input)
     answerButtonsElement.appendChild(label)
     validerButton.classList.remove('hide');
 
 
-    });
+  });
 
 }
 
 function checkAnwers() {
-        
+
   for (i = 0; i < inputsReponds.length; i++) {
-    if(inputsReponds[i].checked){
+    if (inputsReponds[i].checked) {
       checkValue = inputsReponds[i].value;
-      if(checkValue === "true") {
+      if (checkValue === "true") {
         attempCurrent++;
         // Augumenter le score
         scoreCount++;
         // Présenter la progression avec le Bar.
-        progresseBar.style.width = (scoreCount/shuffleQuestions.length)*100 + "%"; 
+        progresseBar.style.width = (scoreCount / shuffleQuestions.length) * 100 + "%";
         progresseBar.classList = "w3-green";
         // Ajouter la coleur correct
-        label[i].classList= "correct";
+        label[i].classList = "correct";
         // Annoncer Bravo
         annonce.innerHTML = "Bravo!";
         questionContainerElement.appendChild(annonce);
@@ -168,86 +174,86 @@ function checkAnwers() {
         nextButton.classList.remove('hide');
         // Stop compter le temps que le joueur a joué pour chaque question
         validerButton.onclick = stop();
-        
-        }
+
+      }
       else {
-        label[i].classList= "incorrect";
-        progresseBar.style.width = (scoreCount/shuffleQuestions.length)*100 + "%"; 
+        label[i].classList = "incorrect";
+        progresseBar.style.width = (scoreCount / shuffleQuestions.length) * 100 + "%";
         progresseBar.classList = "w3-red";
         numbreAttemp();
       }
-  }
     }
+  }
 
 }
 
 function showScore() {
   // resetState();
-  if(scoreCount < shuffleQuestions.length/3) {
-    announceScore.innerText = "Vous êtes au niveau débutant, " + "vous avez eu "+ scoreCount +" sur " + shuffleQuestions.length + " bonnes réponses.";
-  } else if (scoreCount < shuffleQuestions.length/2) {
-    announceScore.innerText = "Vous êtes au niveau intermédiaire, il faut encore travailler! " + "vous avez eu "+ scoreCount +" sur " + shuffleQuestions.length + " bonnes réponses.";
-  } else if(scoreCount === shuffleQuestions.length){
-    announceScore.innerText = "Bravo! " + "Vous avez eu "+ scoreCount +" sur " + shuffleQuestions.length + " bonnes réponses.";
+  if (scoreCount < shuffleQuestions.length / 3) {
+    announceScore.innerText = "Vous êtes au niveau débutant, " + "vous avez eu " + scoreCount + " sur " + shuffleQuestions.length + " bonnes réponses.";
+  } else if (scoreCount < shuffleQuestions.length / 2) {
+    announceScore.innerText = "Vous êtes au niveau intermédiaire, il faut encore travailler! " + "vous avez eu " + scoreCount + " sur " + shuffleQuestions.length + " bonnes réponses.";
+  } else if (scoreCount === shuffleQuestions.length) {
+    announceScore.innerText = "Bravo! " + "Vous avez eu " + scoreCount + " sur " + shuffleQuestions.length + " bonnes réponses.";
   } else {
-    announceScore.innerText = "Vous êtes au niveau avancé! " + "vous avez eu "+ scoreCount +" sur " + shuffleQuestions.length + " bonnes réponses.";
-  } 
+    announceScore.innerText = "Vous êtes au niveau avancé! " + "vous avez eu " + scoreCount + " sur " + shuffleQuestions.length + " bonnes réponses.";
+  }
 }
 
 
 // Clear screen before restart game
 function clearScrrenAndRestartGame() {
-  
-    // clear Ecran avant de remttre le jeu
-  
-    myTable.innerHTML = "";
-    questionElement.innerHTML = "";
-    phraseElement.innerHTML = "";
-    answerButtonsElement.innerHTML = "";
-    announceScore.innerHTML = "";
 
-    progresseBar.style.width = "0%";  
-  
-    validerButton.classList.add('hide');
-    restartButton.classList.add('hide');
-    
+  // clear Ecran avant de remttre le jeu
 
-    currentQuestionIndex = 1;
-    scoreCount = 0;
-  
+  chartContainer.innerHTML = "";
+  questionElement.innerHTML = "";
+  phraseElement.innerHTML = "";
+  answerButtonsElement.innerHTML = "";
+  announceScore.innerHTML = "";
 
-    // restart game
-    startGame();
+  progresseBar.style.width = "0%";
+
+  validerButton.classList.add('hide');
+  restartButton.classList.add('hide');
+
+
+  currentQuestionIndex = 1;
+  scoreCount = 0;
+
+
+  // restart game
+  startGame();
 }
 
 
 function resetState() {
   nextButton.classList.add('hide');
-  while(answerButtonsElement.firstChild) {
+  while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild
-    (answerButtonsElement.firstChild)
+      (answerButtonsElement.firstChild)
   }
 }
 
 // Mettre couleur pour le mot keyWord
-function displayText(str,element) {
-  var displayQuestion = replaceCharactere("**","<span class='KeyWord'> "," </span> ",str)
+function displayText(str, element) {
+  var displayQuestion = replaceCharactere("**", "<span class='KeyWord'> ", " </span> ", str)
   element.innerHTML = displayQuestion;
 }
 
 var keyWord;
 
-function replaceCharactere(to_replace,firstReplacement,lastReplacement,str) {
+function replaceCharactere(to_replace, firstReplacement, lastReplacement, str) {
   var required_string;
 
-  keyWord = str.substring(str.indexOf('*')+2,str.lastIndexOf("*")-1);
-  var etoile = str.substring(str.indexOf('**'),str.lastIndexOf("*")+2);
+  keyWord = str.substring(str.indexOf('*') + 2, str.lastIndexOf("*") - 1);
+  var etoile = str.substring(str.indexOf('**'), str.lastIndexOf("*") + 2);
   var string_after_spliting = etoile.split(to_replace);
 
   for (let i = 0; i < string_after_spliting.length; i++) {
-    if(i === 0) {
-      required_string = firstReplacement + keyWord+lastReplacement;
-      var finir = str.replace(etoile,required_string)
+    if (i === 0) {
+      required_string = firstReplacement + keyWord + lastReplacement;
+      var finir = str.replace(etoile, required_string)
       return finir;
     }
   }
@@ -255,84 +261,156 @@ function replaceCharactere(to_replace,firstReplacement,lastReplacement,str) {
 
 // Lorsque le temps finit, l'utilisateur doit arrêter de jouer, et il va réjour s'il veut.
 function stopWatch() {
-    
+
   seconds--;
 
-    if(seconds === -1) {
-      minutes = timeOutMinutes - 1;
-      seconds = 59;
-      timeOutMinutes = minutes;
-    } 
-    let m = minutes < 10 ? "0" + minutes : minutes;
-    let s = seconds < 10 ? "0" + seconds : seconds;
+  if (seconds === -1) {
+    minutes = timeOutMinutes - 1;
+    seconds = 59;
+    timeOutMinutes = minutes;
+  }
+  let m = minutes < 10 ? "0" + minutes : minutes;
+  let s = seconds < 10 ? "0" + seconds : seconds;
 
-    timer.innerHTML = m + ":" + s; 
+  timer.innerHTML = m + ":" + s;
 
   if (m < 0) {
 
-     // quand le temps s'arrête, on cache les questions le bouton valider et le bouton next
-    
+    // quand le temps s'arrête, on cache les questions le bouton valider et le bouton next
+
     showScore();
 
     questionContainerElement.classList.add('hide');
 
-    validerButton.classList.add('hide');  
+    validerButton.classList.add('hide');
     nextButton.classList.add('hide');
     clearInterval(timerId);
-    
+
     restartButton.classList.remove('hide');
-    
+
   }
 }
 
 // COMPTER DE TEMPS
-// var ret = document.getElementById("timer2");
 var counter = 0;
 var interval;
-var endTime; 
-var arrayTimeQuestionAttemp = [];
-var listTimeQuestionAttemp = [];
+var endTime;
+
+// CHART
+var ctx = document.getElementById('myChart');
+var totalOfTimeAttemps;
+Chart.register(ChartDataLabels)
+var mixedChart;
+
+validerButton.addEventListener('click', function () {
+  chartContainer.style.display = "block";
+});
+
+mixedChart = new Chart(ctx, {
+  data: {
+    datasets: [
+      {
+        type: 'bar',
+        plugins: [ChartDataLabels],
+        label: 'Nombre essaie',
+        data: [],
+        backgroundColor: [],
+      },
+      {
+        type: 'bar',
+        plugins: [ChartDataLabels],
+        label: 'Temps répondu',
+        data: [],
+        backgroundColor: [],
+      }],
+    labels: []
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    categoryPercentage: 0.8,
+    barPercentage: 0.9,
+    scales: {
+      x: {
+        stacked: true,
+        grace: '10%'
+      },
+      y: {
+        stacked: true,
+        beginAtZero: true,
+        grace: '10%'
+      }
+    },
+    plugins: {
+      datalabels: {
+        formatter: (val) => (`${val}%`),
+        labels: {
+          value: {
+            color: 'white',
+            // textAlign: 'center',
+            // fontSize: "14px",
+            // fontFamily: "sans-serif"
+          }
+        }
+      }
+    },
+  }
+});
+
+validerButton.addEventListener('click', function () {
+  chartContainer.style.display = "block";
+  console.log(chartContainer)
+})
+
+var feedBack = document.getElementById('feedBack');
+
 
 function stop() {
 
-  listTimeQuestionAttemp = [];
+  endTime = counter++;
 
-  endTime = convertSec(counter++);
+  if (checkValue === 'true') {
+    mixedChart.data.datasets[0].backgroundColor.push('green');
 
-  listTimeQuestionAttemp.push(currentQuestionIndex);
-  listTimeQuestionAttemp.push(endTime);
-  listTimeQuestionAttemp.push(attempCurrent);
-  listTimeQuestionAttemp.push(keyWord);
-  listTimeQuestionAttemp.push(checkValue);
+  } else {
+    mixedChart.data.datasets[0].backgroundColor.push('red');
+  }
 
-  arrayTimeQuestionAttemp.push(listTimeQuestionAttemp);
+  var percentageOfTime = ((endTime / 40) * 100).toFixed(1);
+  var percentageOfAttemps = ((attempCurrent / 3) * 100).toFixed(1);
+  totalOfTimeAttemps = (percentageOfTime + percentageOfAttemps);
 
-  creatTable(arrayTimeQuestionAttemp,listTimeQuestionAttemp);
+  // mixedChart.data.datasets[0].data.push(totalOfTimeAttemps);
+  mixedChart.data.datasets[0].data.push(percentageOfAttemps);
+  mixedChart.data.datasets[1].data.push(percentageOfTime);
+  mixedChart.data.labels.push("Q " + currentQuestionIndex)
+  mixedChart.update();
+
+  // //FEEDBACK
+  if (checkValue === "false") {
+    var feedBack1 = "Il faut réviser la question " + currentQuestionIndex + " pour retrouver la partie du discours de mot "+ keyWord +".";
+   
+    var list = document.createElement('li');
+    list.appendChild(document.createTextNode(feedBack1));
+    feedBack.appendChild(list);
+
+  } else if (attempCurrent > 2 && checkValue === 'true' || endTime > 40 && checkValue === 'true') {
+    var feedBack2 = "Vous avez trouvé une bonne réponse, mais il faut encore s'entraîner sur la question "+ currentQuestionIndex+ " pour répondre plus rapidement la prochaine fois.";
+    
+    var list = document.createElement('li');
+    list.appendChild(document.createTextNode(feedBack2));
+    feedBack.appendChild(list);
+    
+  }
+
+
+
+
+
+
 
   clearInterval(interval);
   startButton.disabled = false;
-}
-
-function creatTable(array, list) {
-
-  myTable.classList.remove("hide");
-
-  for (var i = 0; i < array.length; i++) {
-
-    var tr = document.createElement('TR');
-
-
-    for (var j = 0; j < list.length; j++) {
-
-      var td = document.createElement('TD');
-      td.appendChild(document.createTextNode(array[i][j]));
-      tr.appendChild(td);
-
-    }
-  }
-
-  tableBody.appendChild(tr);
-
 }
 
 
@@ -354,7 +432,7 @@ function convertSec(cnt) {
 
 function start() {
   startButton.disabled = true;
-  interval = setInterval(function() {
+  interval = setInterval(function () {
     // ret.innerHTML = "Pour la question " + currentQuestionIndex + ", le temps que vous avez passé est " + convertSec(counter++) + "Vous avez essayé " + nombreEssai; // timer start counting here...
     convertSec(counter++);
   }, 1000);
@@ -370,366 +448,366 @@ function numbreAttemp() {
   attempCurrent += 1;
   nombreEssaisRestants = maximumAttemps - attempCurrent;
 
-  if(nombreEssaisRestants > 0) {
-     
-      annonce.innerHTML = "Vous avez encore " + nombreEssaisRestants +" essais !";
-      questionContainerElement.appendChild(annonce);
+  if (nombreEssaisRestants > 0) {
 
-    } else {
+    annonce.innerHTML = "Vous avez encore " + nombreEssaisRestants + " essais !";
+    questionContainerElement.appendChild(annonce);
+
+  } else {
     // désactivité des buttons
-    
-    for (var input of inputsReponds) {
-      input.disabled = true; 
-    }
-    
-      annonce.innerHTML = "Désolé(e)! Vous devez passer à d'autre question!";
-      validerButton.onclick = stop();
-      validerButton.classList.add('hide');
-      nextButton.classList.remove('hide');
 
+    for (var input of inputsReponds) {
+      input.disabled = true;
     }
+
+    annonce.innerHTML = "Désolé(e)! Vous devez passer à d'autre question!";
+    validerButton.onclick = stop();
+    validerButton.classList.add('hide');
+    nextButton.classList.remove('hide');
+
+  }
 
 }
 
 
 var quiz = [{
-    question: "Donner la partie du discours du mot **garantir** dans la phrase:",
-    phrase: "Pour **garantir** une concurrence loyale , il convient que ces mesures soient prises au niveau international . ",
-   reponses: [{
-      texte: "ADV_Int",
-      correct: false
-    }, {
-      texte: "ADV",
-      correct: false
-    }, {
-      texte: "ADJ_Excl/Int",
-      correct: false
-    }, {
-      texte: "V_Inf",
-      correct:true
-    }, {
-      texte: "ADJ",
-      correct: false
-    }, {
-      texte: "Conj_de_Coord",
-      correct: false
-    }]
+  question: "Donner la partie du discours du mot **garantir** dans la phrase:",
+  phrase: "Pour **garantir** une concurrence loyale , il convient que ces mesures soient prises au niveau international . ",
+  reponses: [{
+    texte: "ADV_Int",
+    correct: false
   }, {
-    question: "Donner la partie du discours du mot **loyale** dans la phrase:",
-    phrase: "Pour garantir une concurrence **loyale** , il convient que ces mesures soient prises au niveau international . ",
-   reponses: [{
-      texte: "DET",
-      correct: false
-    }, {
-      texte: "PRO_Int",
-      correct: false
-    }, {
-      texte: "ADJ",
-      correct:true
-    }, {
-      texte: "V_Part_Pr\u00e9s",
-      correct: false
-    }, {
-      texte: "NC",
-      correct: false
-    }, {
-      texte: "DET_Int",
-      correct: false
-    }]
+    texte: "ADV",
+    correct: false
   }, {
-    question: "Donner la partie du discours du mot **il** dans la phrase:",
-    phrase: "Pour garantir une concurrence loyale , **il** convient que ces mesures soient prises au niveau international . ",
-   reponses: [{
-      texte: "PRO_Suj",
-      correct:true
-    }, {
-      texte: "DET_Int",
-      correct: false
-    }, {
-      texte: "PRO_Rel",
-      correct: false
-    }, {
-      texte: "V_Subj",
-      correct: false
-    }, {
-      texte: "V_Imp",
-      correct: false
-    }, {
-      texte: "PRO_Obj",
-      correct: false
-    }]
+    texte: "ADJ_Excl/Int",
+    correct: false
   }, {
-    question: "Donner la partie du discours du mot **convient** dans la phrase:",
-    phrase: "Pour garantir une concurrence loyale , il **convient** que ces mesures soient prises au niveau international . ",
-   reponses: [{
-      texte: "Conj_de_Sub",
-      correct: false
-    }, {
-      texte: "V",
-      correct:true
-    }, {
-      texte: "PRO_Int",
-      correct: false
-    }, {
-      texte: "Mot_\u00e9tranger",
-      correct: false
-    }, {
-      texte: "Conj_de_Coord",
-      correct: false
-    }, {
-      texte: "DET",
-      correct: false
-    }]
+    texte: "V_Inf",
+    correct: true
   }, {
-    question: "Donner la partie du discours du mot **que** dans la phrase:",
-    phrase: "Pour garantir une concurrence loyale , il convient **que** ces mesures soient prises au niveau international . ",
-   reponses: [{
-      texte: "PREP_+_DET",
-      correct: false
-    }, {
-      texte: "Conj_de_Sub",
-      correct:true
-    }, {
-      texte: "Interj",
-      correct: false
-    }, {
-      texte: "PRO_Obj",
-      correct: false
-    }, {
-      texte: "ADV",
-      correct: false
-    }, {
-      texte: "Conj_de_Coord",
-      correct: false
-    }]
+    texte: "ADJ",
+    correct: false
   }, {
-    question: "Donner la partie du discours du mot **prises** dans la phrase:",
-    phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient **prises** au niveau international . ",
-   reponses: [{
-      texte: "Interj",
-      correct: false
-    }, {
-      texte: "Pr\u00e9f",
-      correct: false
-    }, {
-      texte: "ADV_Int",
-      correct: false
-    }, {
-      texte: "PREP_+_DET",
-      correct: false
-    }, {
-      texte: "DET_Int",
-      correct: false
-    }, {
-      texte: "V_Part_Pass\u00e9",
-      correct:true
-    }]
-  }, {
-    question: "Donner la partie du discours du mot **au** dans la phrase:",
-    phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient prises **au** niveau international . ",
-   reponses: [{
-      texte: "V_Imp",
-      correct: false
-    }, {
-      texte: "V_Inf",
-      correct: false
-    }, {
-      texte: "ADV",
-      correct: false
-    }, {
-      texte: "PREP_+_DET",
-      correct:true
-    }, {
-      texte: "Conj_de_Sub",
-      correct: false
-    }, {
-      texte: "Conj_de_Coord",
-      correct: false
-    }]
-  }, {
-    question: "Donner la partie du discours du mot **international** dans la phrase:",
-    phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient prises au niveau **international** . ",
-   reponses: [{
-      texte: "ADJ",
-      correct:true
-    }, {
-      texte: "ADV",
-      correct: false
-    }, {
-      texte: "V_Subj",
-      correct: false
-    }, {
-      texte: "DET_Int",
-      correct: false
-    }, {
-      texte: "PRO_R\u00e9fl",
-      correct: false
-    }, {
-      texte: "ADJ_Excl/Int",
-      correct: false
-    }]
-  }, {
-    question: "Donner la partie du discours du mot **qui** dans la phrase:",
-    phrase: "La proposition de r\u00e9solution , **qui** insiste , entre autres , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-   reponses: [{
-      texte: "PRO_Rel",
-      correct:true
-    }, {
-      texte: "PRO",
-      correct: false
-    }, {
-      texte: "PRO_R\u00e9fl",
-      correct: false
-    }, {
-      texte: "V_Imp",
-      correct: false
-    }, {
-      texte: "Interj",
-      correct: false
-    }, {
-      texte: "PREP",
-      correct: false
-    }]
-  }, {
-    question: "Donner la partie du discours du mot **insiste** dans la phrase:",
-    phrase: "La proposition de r\u00e9solution , qui **insiste** , entre autres , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-   reponses: [{
-      texte: "ADV_Int",
-      correct: false
-    }, {
-      texte: "PRO_Rel",
-      correct: false
-    }, {
-      texte: "V_Part_Pass\u00e9",
-      correct: false
-    }, {
-      texte: "V",
-      correct:true
-    }, {
-      texte: "PREP",
-      correct: false
-    }, {
-      texte: "PRO_R\u00e9fl",
-      correct: false
-    }]
-  }, {
-    question: "Donner la partie du discours du mot **autres** dans la phrase:",
-    phrase: "La proposition de r\u00e9solution , qui insiste , entre **autres** , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-   reponses: [{
-      texte: "PRO",
-      correct:true
-    }, {
-      texte: "V_Imp",
-      correct: false
-    }, {
-      texte: "Mot_\u00e9tranger",
-      correct: false
-    }, {
-      texte: "Pr\u00e9f",
-      correct: false
-    }, {
-      texte: "Conj_de_Sub",
-      correct: false
-    }, {
-      texte: "DET_Int",
-      correct: false
-    }]
-  }, {
-    question: "Donner la partie du discours du mot **que** dans la phrase:",
-    phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour **que** le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-   reponses: [{
-      texte: "PRO_Rel",
-      correct: false
-    }, {
-      texte: "V_Part_Pr\u00e9s",
-      correct: false
-    }, {
-      texte: "NPr",
-      correct: false
-    }, {
-      texte: "DET_Int",
-      correct: false
-    }, {
-      texte: "ADJ_Excl/Int",
-      correct: false
-    }, {
-      texte: "Conj_de_Sub",
-      correct:true
-    }]
-  }, {
-    question: "Donner la partie du discours du mot **des** dans la phrase:",
-    phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour que le niveau **des** nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-   reponses: [{
-      texte: "ADJ_Excl/Int",
-      correct: false
-    }, {
-      texte: "V_Subj",
-      correct: false
-    }, {
-      texte: "PREP_+_DET",
-      correct:true
-    }, {
-      texte: "PRO_Obj",
-      correct: false
-    }, {
-      texte: "PRO_Int",
-      correct: false
-    }, {
-      texte: "V_Part_Pass\u00e9",
-      correct: false
-    }]
-  }, {
-    question: "Donner la partie du discours du mot **acoustiques** dans la phrase:",
-    phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour que le niveau des nuisances **acoustiques** \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-   reponses: [{
-      texte: "Mot_\u00e9tranger",
-      correct: false
-    }, {
-      texte: "ADJ",
-      correct:true
-    }, {
-      texte: "PRO_Suj",
-      correct: false
-    }, {
-      texte: "V_Imp",
-      correct: false
-    }, {
-      texte: "V_Part_Pass\u00e9",
-      correct: false
-    }, {
-      texte: "PRO_Obj",
-      correct: false
-    }]
-  }, {
-    question: "Donner la partie du discours du mot **des** dans la phrase:",
-    phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 **des** divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-   reponses: [{
-      texte: "DET_Int",
-      correct: false
-    }, {
-      texte: "V",
-      correct: false
-    }, {
-      texte: "PRO_R\u00e9fl",
-      correct: false
-    }, {
-      texte: "Conj_de_Coord",
-      correct: false
-    }, {
-      texte: "ADJ_Excl/Int",
-      correct: false
-    }, {
-      texte: "PREP_+_DET",
-      correct:true
-    }]
+    texte: "Conj_de_Coord",
+    correct: false
   }]
+}, {
+  question: "Donner la partie du discours du mot **loyale** dans la phrase:",
+  phrase: "Pour garantir une concurrence **loyale** , il convient que ces mesures soient prises au niveau international . ",
+  reponses: [{
+    texte: "DET",
+    correct: false
+  }, {
+    texte: "PRO_Int",
+    correct: false
+  }, {
+    texte: "ADJ",
+    correct: true
+  }, {
+    texte: "V_Part_Pr\u00e9s",
+    correct: false
+  }, {
+    texte: "NC",
+    correct: false
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **il** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , **il** convient que ces mesures soient prises au niveau international . ",
+  reponses: [{
+    texte: "PRO_Suj",
+    correct: true
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }, {
+    texte: "PRO_Rel",
+    correct: false
+  }, {
+    texte: "V_Subj",
+    correct: false
+  }, {
+    texte: "V_Imp",
+    correct: false
+  }, {
+    texte: "PRO_Obj",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **convient** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , il **convient** que ces mesures soient prises au niveau international . ",
+  reponses: [{
+    texte: "Conj_de_Sub",
+    correct: false
+  }, {
+    texte: "V",
+    correct: true
+  }, {
+    texte: "PRO_Int",
+    correct: false
+  }, {
+    texte: "Mot_\u00e9tranger",
+    correct: false
+  }, {
+    texte: "Conj_de_Coord",
+    correct: false
+  }, {
+    texte: "DET",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **que** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , il convient **que** ces mesures soient prises au niveau international . ",
+  reponses: [{
+    texte: "PREP_+_DET",
+    correct: false
+  }, {
+    texte: "Conj_de_Sub",
+    correct: true
+  }, {
+    texte: "Interj",
+    correct: false
+  }, {
+    texte: "PRO_Obj",
+    correct: false
+  }, {
+    texte: "ADV",
+    correct: false
+  }, {
+    texte: "Conj_de_Coord",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **prises** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient **prises** au niveau international . ",
+  reponses: [{
+    texte: "Interj",
+    correct: false
+  }, {
+    texte: "Pr\u00e9f",
+    correct: false
+  }, {
+    texte: "ADV_Int",
+    correct: false
+  }, {
+    texte: "PREP_+_DET",
+    correct: false
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }, {
+    texte: "V_Part_Pass\u00e9",
+    correct: true
+  }]
+}, {
+  question: "Donner la partie du discours du mot **au** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient prises **au** niveau international . ",
+  reponses: [{
+    texte: "V_Imp",
+    correct: false
+  }, {
+    texte: "V_Inf",
+    correct: false
+  }, {
+    texte: "ADV",
+    correct: false
+  }, {
+    texte: "PREP_+_DET",
+    correct: true
+  }, {
+    texte: "Conj_de_Sub",
+    correct: false
+  }, {
+    texte: "Conj_de_Coord",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **international** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient prises au niveau **international** . ",
+  reponses: [{
+    texte: "ADJ",
+    correct: true
+  }, {
+    texte: "ADV",
+    correct: false
+  }, {
+    texte: "V_Subj",
+    correct: false
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }, {
+    texte: "PRO_R\u00e9fl",
+    correct: false
+  }, {
+    texte: "ADJ_Excl/Int",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **qui** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , **qui** insiste , entre autres , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "PRO_Rel",
+    correct: true
+  }, {
+    texte: "PRO",
+    correct: false
+  }, {
+    texte: "PRO_R\u00e9fl",
+    correct: false
+  }, {
+    texte: "V_Imp",
+    correct: false
+  }, {
+    texte: "Interj",
+    correct: false
+  }, {
+    texte: "PREP",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **insiste** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , qui **insiste** , entre autres , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "ADV_Int",
+    correct: false
+  }, {
+    texte: "PRO_Rel",
+    correct: false
+  }, {
+    texte: "V_Part_Pass\u00e9",
+    correct: false
+  }, {
+    texte: "V",
+    correct: true
+  }, {
+    texte: "PREP",
+    correct: false
+  }, {
+    texte: "PRO_R\u00e9fl",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **autres** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , qui insiste , entre **autres** , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "PRO",
+    correct: true
+  }, {
+    texte: "V_Imp",
+    correct: false
+  }, {
+    texte: "Mot_\u00e9tranger",
+    correct: false
+  }, {
+    texte: "Pr\u00e9f",
+    correct: false
+  }, {
+    texte: "Conj_de_Sub",
+    correct: false
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **que** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour **que** le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "PRO_Rel",
+    correct: false
+  }, {
+    texte: "V_Part_Pr\u00e9s",
+    correct: false
+  }, {
+    texte: "NPr",
+    correct: false
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }, {
+    texte: "ADJ_Excl/Int",
+    correct: false
+  }, {
+    texte: "Conj_de_Sub",
+    correct: true
+  }]
+}, {
+  question: "Donner la partie du discours du mot **des** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour que le niveau **des** nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "ADJ_Excl/Int",
+    correct: false
+  }, {
+    texte: "V_Subj",
+    correct: false
+  }, {
+    texte: "PREP_+_DET",
+    correct: true
+  }, {
+    texte: "PRO_Obj",
+    correct: false
+  }, {
+    texte: "PRO_Int",
+    correct: false
+  }, {
+    texte: "V_Part_Pass\u00e9",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **acoustiques** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour que le niveau des nuisances **acoustiques** \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "Mot_\u00e9tranger",
+    correct: false
+  }, {
+    texte: "ADJ",
+    correct: true
+  }, {
+    texte: "PRO_Suj",
+    correct: false
+  }, {
+    texte: "V_Imp",
+    correct: false
+  }, {
+    texte: "V_Part_Pass\u00e9",
+    correct: false
+  }, {
+    texte: "PRO_Obj",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **des** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 **des** divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "DET_Int",
+    correct: false
+  }, {
+    texte: "V",
+    correct: false
+  }, {
+    texte: "PRO_R\u00e9fl",
+    correct: false
+  }, {
+    texte: "Conj_de_Coord",
+    correct: false
+  }, {
+    texte: "ADJ_Excl/Int",
+    correct: false
+  }, {
+    texte: "PREP_+_DET",
+    correct: true
+  }]
+}]
 
 
 // chosir couleur de fond
 var contenuPrincipal = document.getElementById('contenuPrincipal');
 
 var colorSelect = document.getElementById('background-unchecked');
-colorSelect.addEventListener('change', function() {
+colorSelect.addEventListener('change', function () {
   var selectedColor = colorSelect.value;
   // document.body.style.backgroundColor = selectedColor;
   contenuPrincipal.style.backgroundColor = selectedColor;
@@ -739,7 +817,7 @@ colorSelect.addEventListener('change', function() {
 // choisir couleur de texte 
 
 var colorText = document.getElementById('color-unchecked');
-colorText.addEventListener('change', function() {
+colorText.addEventListener('change', function () {
   var selectedColorTexte = colorText.value;
   // document.body.style.color = selectedColorTexte;
   contenuPrincipal.style.color = selectedColorTexte;
@@ -751,7 +829,7 @@ colorText.addEventListener('change', function() {
 // choisir la taille de police
 
 var decreaseFontSize = document.getElementById('decrease-fontSize');
-var increaseFontSize = document.getElementById('increase-fontSize'); 
+var increaseFontSize = document.getElementById('increase-fontSize');
 var curentFontSize = document.getElementById('curent-fontSize');
 var fontSize = 14;
 
@@ -762,12 +840,12 @@ function updateFontSize() {
 }
 
 
-increaseFontSize.addEventListener('click', function() {
+increaseFontSize.addEventListener('click', function () {
   fontSize += 1;
   updateFontSize();
 });
 
-decreaseFontSize.addEventListener('click', function() {
+decreaseFontSize.addEventListener('click', function () {
   fontSize -= 1;
   updateFontSize();
 });
@@ -775,7 +853,7 @@ decreaseFontSize.addEventListener('click', function() {
 // Interline
 
 var increaseInterligne = document.getElementById('increase-interligne');
-var decreaseInterligne = document.getElementById('decrease-interligne'); 
+var decreaseInterligne = document.getElementById('decrease-interligne');
 var getCurrentValue = document.getElementById('current-value');
 var lineHeight = 1;
 
@@ -787,27 +865,28 @@ function updateLineHeight() {
   getCurrentValue.innerHTML = lineHeight;
 }
 
-increaseInterligne.addEventListener('click', function() {
+increaseInterligne.addEventListener('click', function () {
   lineHeight += 0.5;
   updateLineHeight();
 });
 
-decreaseInterligne.addEventListener('click', function() {
+decreaseInterligne.addEventListener('click', function () {
   lineHeight -= 0.5;
-  updateLineHeight();});
+  updateLineHeight();
+});
 
-  // Text align
+// Text align
 
 var leftAlign = document.getElementById('left-align');
-var rightAlign = document.getElementById('right-align'); 
+var rightAlign = document.getElementById('right-align');
 
-leftAlign.addEventListener('click', function() {
+leftAlign.addEventListener('click', function () {
   document.getElementById('bodySize').style.textAlign = 'left';
   answerButtonsElement.style.textAlign = 'left';
   questionContainerElement.style.textAlign = 'left';
 });
 
-rightAlign.addEventListener('click', function() {
+rightAlign.addEventListener('click', function () {
   questionContainerElement.style.textAlign = 'right';
   answerButtonsElement.style.textAlign = 'right';
   document.getElementById('bodySize').style.textAlign = 'right';
@@ -816,7 +895,7 @@ rightAlign.addEventListener('click', function() {
 //select-font-du-texte
 var selectFontDuTexte = document.getElementById('select-font-du-texte');
 
-selectFontDuTexte.addEventListener('click', function() {
+selectFontDuTexte.addEventListener('click', function () {
   document.getElementById('bodySize').style.fontFamily = selectFontDuTexte.value;
 })
 
@@ -824,19 +903,19 @@ selectFontDuTexte.addEventListener('click', function() {
 var modeJour = document.getElementById('modeJour');
 var modeNuit = document.getElementById('modeNuit');
 
-function appliqueJour(){
+function appliqueJour() {
   document.getElementById('bodySize').style.backgroundColor = "rgb(255, 255, 255)";
   document.getElementById('bodySize').style.color = "rgb(30, 30, 30)";
 }
 
 
 function appliqueNuit() {
-  document.getElementById('bodySize').style.color =  "rgb(255, 255, 255)";
+  document.getElementById('bodySize').style.color = "rgb(255, 255, 255)";
   document.getElementById('bodySize').style.backgroundColor = "rgb(30, 30, 30)";
 }
 
-modeJour.addEventListener('click',appliqueJour);
-modeNuit.addEventListener('click',appliqueNuit);
+modeJour.addEventListener('click', appliqueJour);
+modeNuit.addEventListener('click', appliqueNuit);
 
 var accessibilitySettings = document.getElementById('accessibility-settings');
 var accessibility = document.getElementById('accessibility');

@@ -11,7 +11,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
         <title>Quiz App</title>
-    </head>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>          </head>
     <body id="bodySize">
 
         <div class="container" id="contenuPrincipal">
@@ -38,11 +41,11 @@
                   <p style="margin-left: 5%;margin-bottom:2%">
 
                           <!-- backgroundColor -->
-                          <span>Background Color</span>
+                          <span>La couleur de fond</span>
                           <input type="color" id="background-unchecked" value="#ffffff" class="color_picker">
 
                           <!-- Color Texte -->
-                          <span style="margin-left: 4%;">Texte color</span>
+                          <span style="margin-left: 4%;">La couleur du texte</span>
                           <input type="color" id="color-unchecked" value="#ffffff" class="color_picker">
 
 
@@ -62,15 +65,15 @@
                   <p style="margin-left: 5%;">
                     <!-- font style -->
                     <select name="font-du-texte" id="select-font-du-texte">
-                      <option value="">--Choisir un style du texte--</option>
-                      <option value="sans-serif">Sans-serif</option>
-                      <option value="serif">Serif</option>
-                      <option value="monospace">Dyslexie</option>
-                      <option value="Times New Roman">Times New Roman</option>
+                      <option value="">--Sélectionner la police du texte--</option>
+                      <option value="Verdana">Verdana</option>
+                      <option value="Helvetica">Helvetica</option>
+                      <option value="Arial">Arial</option>
+
                   </select>
 
                     <!-- font-size -->
-                    <span style="margin-left: 10%;">Text size</span>
+                    <span style="margin-left: 10%;">La taille du texte</span>
                         
                           <button id="decrease-fontSize"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
                             <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
@@ -85,7 +88,7 @@
 
 
                               <!-- line height texte -->
-                    <span>Interligne</span>
+                    <span>L'espace entre les lignes</span>
                           <button id="decrease-interligne"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
                             <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                           </svg></button>
@@ -95,7 +98,7 @@
                           </svg></button>
 
                     <!-- aligne texte -->
-                    <span style="margin-left: 7%;">Text align</span>
+                    <span style="margin-left: 7%;">L'alignement</span>
                     <button id="left-align"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-text-left" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
                       </svg></button>
@@ -140,22 +143,12 @@
             <button id="restart-btn" class="restart-btn btn hide">Restart</button>
         </div>
         </div>
-        <div id="timeQuestionAttemps">
-            <table border="2" id="myTable" class="hide">
-                <thead>
-                  <tr>
-                    <th>Question</th>
-                    <th>Durée</th>
-                    <th>Nombre d'essai</th>
-                    <th>Partie du discours du mot</th>
-                    <th>Résultat</th>
-                  </tr>
-                </thead>
-                <tbody id="tableBody">
-                                                  
-                </tbody>
-              </table>
+
+        <div id="chartcontainer" style="display: none;height: 700px;width:800px">
+            <canvas id="myChart"></canvas>
+            <ol id="feedBack"></ol>
         </div>
+        
         <script src="quiz.js"></script>
       </div>
     </body>
