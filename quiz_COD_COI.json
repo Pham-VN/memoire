@@ -1,0 +1,184 @@
+[
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Je **le** mange.",
+        "reponses": [
+            {
+                "texte": "Attribut du Sujet",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            }
+        ]
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "J' appelle **Cl\u00e9ment**.",
+        "reponses": [
+            {
+                "texte": "Attribut du Sujet",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            }
+        ]
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Pierre **lui** parle.",
+        "reponses": [
+            {
+                "texte": "Attribut du Sujet",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "false"
+            }
+        ]
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Je **la** connais.",
+        "reponses": [
+            {
+                "texte": "Attribut du Sujet",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            }
+        ]
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "J' **en** parle.",
+        "reponses": [
+            {
+                "texte": "Attribut du Sujet",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "false"
+            }
+        ]
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Il **les** prend dans ses bras.",
+        "reponses": [
+            {
+                "texte": "Attribut du Sujet",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            }
+        ]
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "J' aime la **musique**.",
+        "reponses": [
+            {
+                "texte": "Attribut du Sujet",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            }
+        ]
+    }
+]
