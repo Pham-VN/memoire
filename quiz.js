@@ -357,14 +357,15 @@ mixedChart = new Chart(ctx, {
   }
 });
 
+
+// Faire apparaître le diagramme en cliquant à button valider
 validerButton.addEventListener('click', function () {
   chartContainer.style.display = "block";
-  console.log(chartContainer)
 })
 
 var feedBack = document.getElementById('feedBack');
 
-
+//  Cette fonction a pour but d'incrémenter progressivement la valeur de la barre : nombre d'essais, temps passé, ainsi que le retour d'information.
 function stop() {
 
   endTime = counter++;
@@ -388,26 +389,52 @@ function stop() {
 
   // //FEEDBACK
   if (checkValue === "false") {
-    var feedBack1 = "Il faut réviser la question " + currentQuestionIndex + " pour retrouver la partie du discours de mot "+ keyWord +".";
+    let feedBack1 = "Il faut réviser la question "
+    let continueFeedBack = " pour retrouver la partie du discours de mot ";
+
+    let span = document.createElement("span");
+    let textnode = document.createTextNode(currentQuestionIndex);
+    span.setAttribute("class","indexQuestion");
+    span.appendChild(textnode);
+    span.style.color = "red";
+    span.style.fontSize = "18px";
+
+
+    let spanKeyWord = document.createElement("span");
+    let textWord = document.createTextNode(keyWord +".");
+    spanKeyWord.setAttribute("class","KeyWord");
+    spanKeyWord.appendChild(textWord);
+    spanKeyWord.style.color = "red";
+    spanKeyWord.style.fontSize = "18px";
+
+
    
-    var list = document.createElement('li');
-    list.appendChild(document.createTextNode(feedBack1));
+    let list = document.createElement('li');
+    feedBack.appendChild(document.createTextNode(feedBack1));
+    feedBack.appendChild(span);
+    feedBack.appendChild(document.createTextNode(continueFeedBack));
+    feedBack.appendChild(spanKeyWord);
+
     feedBack.appendChild(list);
 
   } else if (attempCurrent > 2 && checkValue === 'true' || endTime > 40 && checkValue === 'true') {
-    var feedBack2 = "Vous avez trouvé une bonne réponse, mais il faut encore s'entraîner sur la question "+ currentQuestionIndex+ " pour répondre plus rapidement la prochaine fois.";
-    
+    let feedBack2 = "Vous avez trouvé une bonne réponse, mais il faut encore s'entraîner sur la question ";
+    let continueFeedBack2 =  " pour répondre plus rapidement la prochaine fois.";
+
+    let span = document.createElement("span");
+    let textnode = document.createTextNode(currentQuestionIndex);
+    span.setAttribute("class","indexQuestion");
+    span.appendChild(textnode);
+    span.style.color = "red";
+    span.style.fontSize = "18px";
+
     var list = document.createElement('li');
-    list.appendChild(document.createTextNode(feedBack2));
+    feedBack.appendChild(document.createTextNode(feedBack2));
+    feedBack.appendChild(span);
+    feedBack.appendChild(document.createTextNode(continueFeedBack2));
     feedBack.appendChild(list);
     
   }
-
-
-
-
-
-
 
   clearInterval(interval);
   startButton.disabled = false;
@@ -802,6 +829,519 @@ var quiz = [{
   }]
 }]
 
+
+quiz_COD_COI = [
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "Il s\u2019 **en** souvient.",
+      reponses: [
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "COD",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "J' **y** pense.",
+      reponses: [
+          {
+              texte: "COI",
+              correct: true
+          },
+          {
+              texte: "COD",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "J' **en** moque.",
+      reponses: [
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "COD",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "Je **le** mange.",
+      reponses: [
+          {
+              texte: "COD",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "Il **me** verra.",
+      reponses: [
+          {
+              texte: "COD",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "Je **t\u2019** ai dit que c\u2019 \u00e9tait urgent.",
+      reponses: [
+          {
+              texte: "COI",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "COD",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "Il **les** prend dans ses bras.",
+      reponses: [
+          {
+              texte: "COI",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "COD",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "Je **me** regarde dans le reflet de l\u2019 eau.",
+      reponses: [
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "COD",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "J' appelle **Cl\u00e9ment**.",
+      reponses: [
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "COD",
+              correct: true
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "Je **te** demande de venir.",
+      reponses: [
+          {
+              texte: "COD",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "J' aime la **musique**.",
+      reponses: [
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "COD",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "Pierre **lui** parle.",
+      reponses: [
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "COD",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "J' **en** parle.",
+      reponses: [
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          },
+          {
+              texte: "COD",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: true
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "Je **la** connais.",
+      reponses: [
+          {
+              texte: "COD",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          }
+      ]
+  },
+  {
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      phrase: "Je **te** ressemble.",
+      reponses: [
+          {
+              texte: "Compl\u00e9ment d'agent",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment circonstanciel de cause",
+              correct: false
+          },
+          {
+              texte: "COI",
+              correct: true
+          },
+          {
+              texte: "Compl\u00e9ments du nom",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de lieu",
+              correct: false
+          },
+          {
+              texte: "Compl\u00e9ment de l'adjectif",
+              correct: false
+          },
+          {
+              texte: "COD",
+              correct: false
+          }
+      ]
+  }
+]
 
 // chosir couleur de fond
 var contenuPrincipal = document.getElementById('contenuPrincipal');
