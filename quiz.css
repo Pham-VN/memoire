@@ -272,13 +272,15 @@ input[type=color]{
 }
 #chart-container{
  margin-left:2%;
- margin-top:-9%;
+ margin-top:1%;
 
 }
 #feedBack {
-  width: 823px;
-  background-color: #e3e8db;
-  margin-left: 4%;
+  margin-left: 1%;
+  padding: 6px;
+  margin-top: 2%;
+  border: 1px solid black;
+  background-color: #fbe9e9;
 }
 #feedBack li {
   list-style: none;
@@ -290,4 +292,13 @@ input[type=color]{
 font-size: 16px;
 font-family: sans-serif;
 margin-left: -2%;
+}
+.guideChart{
+  font-family: sans-serif;
+  margin-left: 1%;
+  padding: 6px;
+  border: 1px solid black;  
+  background-color: #000;
+  color: #F9F06B;
+  line-height: 2em;
 }

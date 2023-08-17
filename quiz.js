@@ -9,6 +9,15 @@
 
 //Button
 var startButton = document.getElementById('start-btn');
+//START GAME quiz pour trouver les Parties Du_Discours
+startButton.addEventListener('click', () => { startGame(quiz_Partie_Du_Discours) });
+startButton.addEventListener('click', start);
+
+var fonctionGrammaticale = document.getElementById('fonctionGrammaticale-btn');
+//START GAME de quiz pour trouver la fonctionne COD_COI
+fonctionGrammaticale.addEventListener('click',() => { startGame(quiz_COD_COI) }); 
+fonctionGrammaticale.addEventListener('click', start);
+
 var nextButton = document.getElementById('next-btn');
 var restartButton = document.getElementById('restart-btn');
 var validerButton = document.getElementById('valider-btn');
@@ -43,9 +52,6 @@ var timeOutMinutes = 10;
 
 var quizEnded = false;
 
-//START GAME
-startButton.addEventListener('click', startGame);
-startButton.addEventListener('click', start);
 
 //Restart Button 
 restartButton.addEventListener("click", clearScrrenAndRestartGame);
@@ -58,7 +64,7 @@ nextButton.addEventListener('click', () => {
 })
 
 
-function startGame() {
+function startGame(test) {
 
   timerId = setInterval(stopWatch, 1000);
 
@@ -71,9 +77,11 @@ function startGame() {
 
   // cacher le button Start
   startButton.classList.add('hide');
+  // fonctionGrammaticale
+  fonctionGrammaticale.classList.add('hide');
 
   // Mélanger des questions
-  shuffleQuestions = quiz.sort(() => Math.random() - .5);
+  shuffleQuestions = test.sort(() => Math.random() - .5);
   //
   // currentQuestionIndex = 1;
   scoreCount = 0;
@@ -202,7 +210,7 @@ function showScore() {
 
 
 // Clear screen before restart game
-function clearScrrenAndRestartGame() {
+function clearScrrenAndRestartGame(test) {
 
   // clear Ecran avant de remttre le jeu
 
@@ -223,7 +231,9 @@ function clearScrrenAndRestartGame() {
 
 
   // restart game
-  startGame();
+  startGame(test);
+  // startGame(quiz_COD_COI);
+
 }
 
 
@@ -438,6 +448,7 @@ function stop() {
 
   clearInterval(interval);
   startButton.disabled = false;
+  fonctionGrammaticale.disabled = false;
 }
 
 
@@ -459,6 +470,7 @@ function convertSec(cnt) {
 
 function start() {
   startButton.disabled = true;
+  fonctionGrammaticale.disabled = true;
   interval = setInterval(function () {
     // ret.innerHTML = "Pour la question " + currentQuestionIndex + ", le temps que vous avez passé est " + convertSec(counter++) + "Vous avez essayé " + nombreEssai; // timer start counting here...
     convertSec(counter++);
@@ -497,7 +509,7 @@ function numbreAttemp() {
 }
 
 
-var quiz = [{
+var quiz_Partie_Du_Discours = [{
   question: "Donner la partie du discours du mot **garantir** dans la phrase:",
   phrase: "Pour **garantir** une concurrence loyale , il convient que ces mesures soient prises au niveau international . ",
   reponses: [{
