@@ -1,0 +1,587 @@
+[
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Pierre **lui** parle.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "true"
+            }
+        ],
+        "analyses": {
+            "sujet": "Pierre",
+            "verbe": "parle",
+            "iobj": "lui"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Je **te** demande de venir.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "Je",
+            "verbe": "demande",
+            "iobj": "te"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "J' **y** pense.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "J'",
+            "verbe": "pense",
+            "iobj": "y"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Il s\u2019 **en** souvient.",
+        "reponses": [
+            {
+                "texte": "COI",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "Il",
+            "verbe": "souvient",
+            "iobj": "en"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Il **les** prend dans ses bras.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "Il",
+            "verbe": "prend",
+            "obj": "les"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "J' appelle **Cl\u00e9ment**.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "J'",
+            "verbe": "appelle",
+            "obj": "Cl\u00e9ment"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "J' **en** parle.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "J'",
+            "verbe": "parle",
+            "iobj": "en"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Je **t\u2019** ai dit que c\u2019 \u00e9tait urgent.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "true"
+            }
+        ],
+        "analyses": {
+            "sujet": "c\u2019",
+            "verbe": "dit",
+            "iobj": "t\u2019"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Je **me** regarde dans le reflet de l\u2019 eau.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "Je",
+            "verbe": "regarde",
+            "obj": "me"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "J' **en** moque.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "J'",
+            "verbe": "moque",
+            "iobj": "en"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Je **la** connais.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "Je",
+            "verbe": "connais",
+            "obj": "la"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Je **le** mange.",
+        "reponses": [
+            {
+                "texte": "COI",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "Je",
+            "verbe": "mange",
+            "obj": "le"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "J' aime la **musique**.",
+        "reponses": [
+            {
+                "texte": "COI",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "J'",
+            "verbe": "aime",
+            "obj": "musique"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Il **me** verra.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "true"
+            }
+        ],
+        "analyses": {
+            "sujet": "Il",
+            "verbe": "verra",
+            "obj": "me"
+        }
+    },
+    {
+        "question": "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+        "phrase": "Je **te** ressemble.",
+        "reponses": [
+            {
+                "texte": "Compl\u00e9ment circonstanciel de cause",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment de l'adjectif",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ment d'agent",
+                "correct": "false"
+            },
+            {
+                "texte": "Compl\u00e9ments du nom",
+                "correct": "false"
+            },
+            {
+                "texte": "COI",
+                "correct": "true"
+            },
+            {
+                "texte": "Compl\u00e9ment de lieu",
+                "correct": "false"
+            },
+            {
+                "texte": "COD",
+                "correct": "false"
+            }
+        ],
+        "analyses": {
+            "sujet": "Je",
+            "verbe": "ressemble",
+            "iobj": "te"
+        }
+    }
+]
