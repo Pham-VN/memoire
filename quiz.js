@@ -54,8 +54,8 @@ var quizEnded = false;
 
 
 //Restart Button 
-restartButton.addEventListener("click", clearScrrenAndRestartGame);
-
+restartButton.addEventListener("click", () => {clearScrrenAndRestartGame(quiz_Partie_Du_Discours)});
+restartButton.addEventListener("click", () => {clearScrrenAndRestartGame(quiz_COD_COI)})
 // Next Button
 nextButton.addEventListener('click', () => {
   resetState()
@@ -63,8 +63,7 @@ nextButton.addEventListener('click', () => {
   setNextQuestion()
 })
 
-
-function startGame(test) {
+function startGame(arguments) {
 
   timerId = setInterval(stopWatch, 1000);
 
@@ -81,8 +80,9 @@ function startGame(test) {
   fonctionGrammaticale.classList.add('hide');
 
   // Mélanger des questions
-  shuffleQuestions = test.sort(() => Math.random() - .5);
-  //
+ 
+  shuffleQuestions = [].slice.call(arguments).sort(() => Math.random() - .5);
+
   // currentQuestionIndex = 1;
   scoreCount = 0;
 
