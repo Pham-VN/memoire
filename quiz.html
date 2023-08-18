@@ -136,7 +136,7 @@
             <div id="announceScore"></div>
 
         <div class="controls">
-            <button id="start-btn" class="start-btn btn">Partie du discours</button>
+            <button id="partieDuDiscours-btn" class="start-btn btn">Partie du discours</button>
             <button id="fonctionGrammaticale-btn" class="start-btn btn">Fonctions</button>
             <button id="valider-btn" class="valider-btn btn hide">Valider</button>
             <button id="next-btn" class="next-btn btn hide">Next</button>
@@ -147,10 +147,27 @@
 
         <div id="chartcontainer" style="display: none;height: 400px;width:800px">
             <canvas id="myChart"></canvas>
-            <div class="guideChart">La couleur d'une barre change en fonction de votre réponse. Si votre réponse est correcte, la barre devient verte. En revanche, si la réponse est incorrecte, elle devient rouge. Pour évaluer vos performances, comparez les hauteurs des barres. Une barre verte courte signifie que vous avez répondu correctement dès la première tentative et rapidement. En revanche, une barre rouge haute indique que vous avez eu du mal avec cette question, ayant tenté trois fois. Vous devriez revoir cette question pour vous améliorer.</div>
+            <div id="guideChart">La couleur d'une barre change en fonction de votre réponse. Si votre réponse est correcte, la barre devient verte. En revanche, si la réponse est incorrecte, elle devient rouge. Pour évaluer vos performances, comparez les hauteurs des barres. Une barre verte courte signifie que vous avez répondu correctement dès la première tentative et rapidement. En revanche, une barre rouge haute indique que vous avez eu du mal avec cette question, ayant tenté trois fois. Vous devriez revoir cette question pour vous améliorer.</div>
             <ol id="feedBack"></ol>
         </div>
         
+        <button id="showCorrectionButton" style="display: none;">Voir la Correction</button>
+        <table id="correctionTable" style="display: none;">
+    <!-- Tableau de correction à afficher ici -->
+          <thead>
+            <tr>
+              <th>Phrase</th>
+              <th>Question pour trouver la fonction</th>
+              <th>Sujet</th>
+              <th>Verbe</th>
+              <th>COI</th>
+              <th>COD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Le contenu sera généré dynamiquement en JavaScript -->
+          </tbody>
+        </table>
         <script src="quiz.js"></script>
       </div>
     </body>

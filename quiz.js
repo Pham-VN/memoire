@@ -1,3 +1,7 @@
+// TODO
+// cOMMENT RECONSTRUIRE LA TABLEAU DE VISUALISATION APRÈS RESTART LES JEUX
+// Pourquoi quand on restart de de QUIZ Partie du discours; on a le quiz de COD et COI mais n'est pas la partie du discours? 
+
 // • La fonction "startGame()" pour démarrer le Quiz.
 // • La fonction "ShowQuestionAndPhrase()" pour afficher le nombre de questions, les phrases et les réponses.
 // • La fonction "setNextQuestion()" pour passer à la question suivante.
@@ -5,22 +9,6 @@
 // • La fonction "showScore()" pour afficher le niveau obtenu par l'étudiant après avoir terminé le Quiz.
 // • La fonction "restartQuiz()" pour permettre à l'utilisateur de recommencer le Quiz.
 // • La fonction "stopWatch()" pour limiter le temps de réponse pour une liste de question.
-
-
-//Button
-var startButton = document.getElementById('start-btn');
-//START GAME quiz pour trouver les Parties Du_Discours
-startButton.addEventListener('click', () => { startGame(quiz_Partie_Du_Discours) });
-startButton.addEventListener('click', start);
-
-var fonctionGrammaticale = document.getElementById('fonctionGrammaticale-btn');
-//START GAME de quiz pour trouver la fonctionne COD_COI
-fonctionGrammaticale.addEventListener('click',() => { startGame(quiz_COD_COI) }); 
-fonctionGrammaticale.addEventListener('click', start);
-
-var nextButton = document.getElementById('next-btn');
-var restartButton = document.getElementById('restart-btn');
-var validerButton = document.getElementById('valider-btn');
 
 
 // var displayContainer = document.getElementB
@@ -43,6 +31,8 @@ var label = document.getElementsByTagName('label');
 var checkValue;
 var currentQuestionIndex = 1;
 var chartContainer = document.getElementById('chartcontainer');
+var guideChart = document.getElementById('guideChart');
+var feedBack = document.getElementById('feedBack');
 
 // Timer
 var timer = document.getElementById("timer");
@@ -52,9 +42,24 @@ var timeOutMinutes = 10;
 
 var quizEnded = false;
 
+//Button
+var partieDuDiscours = document.getElementById('partieDuDiscours-btn');
+//START GAME quiz pour trouver les Parties Du_Discours
+partieDuDiscours.addEventListener('click', () => { startGame(quiz_Partie_Du_Discours) });
+partieDuDiscours.addEventListener('click', start);
+
+var fonctionGrammaticale = document.getElementById('fonctionGrammaticale-btn');
+//START GAME de quiz pour trouver la fonctionne COD_COI
+fonctionGrammaticale.addEventListener('click',() => { startGame(quiz_COD_COI) }); 
+fonctionGrammaticale.addEventListener('click', start);
+
+var nextButton = document.getElementById('next-btn');
+var restartButton = document.getElementById('restart-btn');
+var validerButton = document.getElementById('valider-btn');
 
 //Restart Button 
 restartButton.addEventListener("click", () => {clearScrrenAndRestartGame(quiz_Partie_Du_Discours)});
+
 restartButton.addEventListener("click", () => {clearScrrenAndRestartGame(quiz_COD_COI)})
 // Next Button
 nextButton.addEventListener('click', () => {
@@ -75,7 +80,7 @@ function startGame(arguments) {
 
 
   // cacher le button Start
-  startButton.classList.add('hide');
+  partieDuDiscours.classList.add('hide');
   // fonctionGrammaticale
   fonctionGrammaticale.classList.add('hide');
 
@@ -92,6 +97,8 @@ function startGame(arguments) {
   setNextQuestion();
 
 }
+
+var showCorrectionButton = document.getElementById("showCorrectionButton");
 
 function setNextQuestion() {
 
@@ -110,7 +117,7 @@ function setNextQuestion() {
     showScore();
 
     restartButton.classList.remove('hide');
-
+    showCorrectionButton.style.display = "block";
 
   } else {
     showQuestionAndPhrase(shuffleQuestions[currentQuestionIndex]);
@@ -181,7 +188,7 @@ function checkAnwers() {
         // Faire appaître le button Next
         nextButton.classList.remove('hide');
         // Stop compter le temps que le joueur a joué pour chaque question
-        validerButton.onclick = stop();
+        validerButton.onclick = StudentProgressVisualization();
 
       }
       else {
@@ -214,7 +221,6 @@ function clearScrrenAndRestartGame(test) {
 
   // clear Ecran avant de remttre le jeu
 
-  chartContainer.innerHTML = "";
   questionElement.innerHTML = "";
   phraseElement.innerHTML = "";
   answerButtonsElement.innerHTML = "";
@@ -231,7 +237,18 @@ function clearScrrenAndRestartGame(test) {
 
 
   // restart game
+  chartcontainer.innerHTML = ""
+
+  // '<canvas id="myChart"></canvas>';
+
+  // guideChart.innerHTML = "";
+  // guideChart.style.display = "none";
+
+  // feedBack.innerHTML = "";
+  // feedBack.style.display = "none";
+  
   startGame(test);
+
   // startGame(quiz_COD_COI);
 
 }
@@ -312,10 +329,6 @@ var totalOfTimeAttemps;
 Chart.register(ChartDataLabels)
 var mixedChart;
 
-validerButton.addEventListener('click', function () {
-  chartContainer.style.display = "block";
-});
-
 mixedChart = new Chart(ctx, {
   data: {
     datasets: [
@@ -373,10 +386,9 @@ validerButton.addEventListener('click', function () {
   chartContainer.style.display = "block";
 })
 
-var feedBack = document.getElementById('feedBack');
 
 //  Cette fonction a pour but d'incrémenter progressivement la valeur de la barre : nombre d'essais, temps passé, ainsi que le retour d'information.
-function stop() {
+function StudentProgressVisualization() {
 
   endTime = counter++;
 
@@ -447,8 +459,8 @@ function stop() {
   }
 
   clearInterval(interval);
-  startButton.disabled = false;
-  fonctionGrammaticale.disabled = false;
+  partieDuDiscours.disabled = false;
+  // fonctionGrammaticale.disabled = false;
 }
 
 
@@ -469,8 +481,8 @@ function convertSec(cnt) {
 }
 
 function start() {
-  startButton.disabled = true;
-  fonctionGrammaticale.disabled = true;
+  partieDuDiscours.disabled = true;
+  // fonctionGrammaticale.disabled = true;
   interval = setInterval(function () {
     // ret.innerHTML = "Pour la question " + currentQuestionIndex + ", le temps que vous avez passé est " + convertSec(counter++) + "Vous avez essayé " + nombreEssai; // timer start counting here...
     convertSec(counter++);
@@ -500,7 +512,7 @@ function numbreAttemp() {
     }
 
     annonce.innerHTML = "Désolé(e)! Vous devez passer à d'autre question!";
-    validerButton.onclick = stop();
+    validerButton.onclick = StudentProgressVisualization();
     validerButton.classList.add('hide');
     nextButton.classList.remove('hide');
 
@@ -1485,3 +1497,80 @@ function cacheAccessibility() {
 
 accessibility.addEventListener('click', afficheAccessibility);
 hideAccessibilitySettings.addEventListener('click', cacheAccessibility);
+
+const quizQuestions = [
+  {
+    "phrase": "J'en parle",
+    "questionPourTrouverFonction":"de quoi je parle ?",
+    "analyses": {
+      "sujet": "J'",
+      "verbe": "parle ?",
+      "iobj": " de la mer => en"
+    }
+  },
+  {
+    "phrase": "J'aime clément",
+    "questionPourTrouverFonction":"aime QUI ?",
+    "analyses": {
+      "sujet": "J'",
+      "verbe": "aime",
+      "obj": "qui => clément"
+    }
+  },
+  {
+    "phrase": "Pierre lui parle.",
+    "questionPourTrouverFonction":"à qui Pierre parle ?",
+    "analyses": {
+      "sujet": "Pierre",
+      "verbe": "parle",
+      "iobj": "à qui => lui"
+  }
+  }
+  
+];
+
+
+var quizContainer = document.getElementById("quizContainer");
+var correctionTable = document.getElementById("correctionTable");
+
+showCorrectionButton.addEventListener("click", showCorrection);
+
+function showCorrection() {
+
+  contenuPrincipal.innerHTML = ""; 
+  chartContainer.innerHTML = ""; 
+
+  quizQuestions.forEach(question => {
+    const row = correctionTable.insertRow();
+    
+    const phraseCell = row.insertCell(0);
+    const questionCell = row.insertCell(1);
+    const sujetCell = row.insertCell(2);
+    const verbeCell = row.insertCell(3);
+    const coiCell = row.insertCell(4);
+    const codCell = row.insertCell(5);
+    
+    phraseCell.textContent = question.phrase;
+    questionCell.textContent = question.questionPourTrouverFonction;
+    sujetCell.textContent = question.analyses.sujet || "";
+    verbeCell.textContent = question.analyses.verbe || "";
+    coiCell.textContent = question.analyses.iobj || "";
+    codCell.textContent = question.analyses.obj || "";
+    
+    if (question.analyses.sujet) {
+      sujetCell.classList.add("yellow-bg");
+    }
+    if (question.analyses.verbe) {
+      verbeCell.classList.add("green-bg");
+    }
+    if (question.analyses.iobj) {
+      coiCell.classList.add("orange-bg");
+    }
+    if (question.analyses.obj) {
+      codCell.classList.add("red-bg");
+    }
+  });
+  
+  correctionTable.style.display = "block";
+  quizContainer.style.display = "none";
+}
