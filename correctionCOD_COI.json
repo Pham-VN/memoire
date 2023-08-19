@@ -1,0 +1,110 @@
+[
+    {
+        "sentence": "J'appelle Cl\u00e9ment.",
+        "question": "J'appelle QUI? Clément",
+        "analyse": {
+            "sujet": "J'",
+            "verbe": "appelle",
+            "obj": "Cl\u00e9ment"
+        }
+    },
+    {
+        "sentence": "J'aime la musique.",
+        "question": "J'aime QUOI? musique",
+        "analyse": {
+            "sujet": "J'",
+            "verbe": "aime",
+            "obj": "musique"
+        }
+    },
+    {
+        "sentence": "Je le mange.",
+        "question": "Je mange QUOI? Un sandwich",
+        "analyse": {
+            "sujet": "Je",
+            "obj": "le",
+            "verbe": "mange"
+        }
+    },
+    {
+        "sentence": "Je la connais.",
+        "question": "Je connais QUI? Marie",
+        "analyse": {
+            "sujet": "Je",
+            "obj": "la",
+            "verbe": "connais"
+        }
+    },
+    {
+        "sentence": "Il les prend dans ses bras.",
+        "question": "Il prend QUOI dans ses bras? Les enfants",
+        "analyse": {
+            "sujet": "Il",
+            "obj": "les",
+            "verbe": "prend"
+        }
+    },
+    {
+        "sentence": "Je me regarde dans le reflet de l\u2019eau.",
+        "question": "Je regarde QUI? moi-même",
+        "analyse": {
+            "sujet": "Je",
+            "obj": "me",
+            "verbe": "regarde"
+        }
+    },
+    {
+        "sentence": "Pierre lui parle.",
+        "question": "Pirerre parle À QUI? À son ami",
+        "analyse": {
+            "sujet": "Pierre",
+            "iobj": "lui",
+            "verbe": "parle"
+        }
+    },
+    {
+        "sentence": "J'en parle.",
+        "question": "Je parle DE QUOI? De mon voyage en Europe",
+        "analyse": {
+            "sujet": "J'",
+            "iobj": "en",
+            "verbe": "parle"
+        }
+    },
+    {
+        "sentence": "Je te ressemble.",
+        "question": "Je ressemble À QUI ? la personne À QUI je parle (te)",
+        "analyse": {
+            "sujet": "Je",
+            "iobj": "te",
+            "verbe": "ressemble"
+        }
+    },
+    {
+        "sentence": "J'y pense.",
+        "question": "Je pense À QUOI? À ma famille",
+        "analyse": {
+            "sujet": "J'",
+            "iobj": "y",
+            "verbe": "pense"
+        }
+    },
+    {
+        "sentence": "Je m'en moque.",
+        "question": "Je me moque DE QUOI? De la mode",
+        "analyse": {
+            "sujet": "J'",
+            "iobj": "en",
+            "verbe": "moque"
+        }
+    },
+    {
+        "sentence": "Il s\u2019en souvient.",
+        "question": "Il se souvient DE QUOI? De sa vie",
+        "analyse": {
+            "sujet": "Il",
+            "iobj": "en",
+            "verbe": "souvient"
+        }
+    }
+]
