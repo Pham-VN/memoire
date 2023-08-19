@@ -1,8 +1,9 @@
-/* *, *::before, *::after {
-    box-sizing: border-box;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 25px;
-} */
+html,
+body {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
 
 body {
     padding: 0;
@@ -97,30 +98,33 @@ input[type="radio"] {
     margin-right:10px;
     font-size: 50px;
 }
+.inputReponses {
+  width: 220%;
+}
 label {
     margin-right: 500px;
 }
 table {
     width: 50%;
     border-collapse: collapse;
-    margin-top: 14%;
-    margin-left: -10%;
+   margin: 54%;
 }  
  table, td {
-    border: 1px solid;
-    width: 100%;
+    border: 24px solid;
+    width: 70%;
+    margin-left: 42%;
 }
 
 th, td {
     text-align: center;
-    padding: 12px;
+    padding: 18px;
 }
       
 th {
     background-color: #04AA6D;
     color: white;
   }
-tr {background-color: #fb7516;}
+/* tr {background-color: #fbbe16;} */
 #timeQuestionAttemps {
     height: 771px;
     width: 24%;
@@ -180,16 +184,16 @@ select {
     margin-bottom: 4%;
    }
    label {
-    border: 1px solid black;
-    padding: 7px;
-    border-radius: 25px;
-    width: 50%;
-    background-color: rgb(255, 255, 255);
-    /* text-align:left; */
-    color: #000000;
-   }
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    width: 65%;
+    border-radius: 5px;
+    transition: all 0.3s;
+    margin-left: 4%;
+}
+
    label:hover {
-        background-color: rgb(240, 240, 123);
+        background-color: #0bb351;
    }
    .correct {
     border: 2px solid;
@@ -317,4 +321,38 @@ margin-left: -2%;
 
 .orange-bg {
   background-color: orange;
+}
+
+
+
+@media screen and (min-width: 480px) {
+
+  html {
+    font-size: 85%;
+  }
+
+  body {
+    min-height: 700px;
+  }
+
+  .container {
+    width: 80%;
+  }
+
+  .questions-page__question {
+    height: 8rem;
+  }
+
+}
+
+@media screen and (min-width: 1100px) {
+
+  html {
+    font-size: 100%;
+  }
+
+  body {
+    min-height: 800px;
+  }
+
 }

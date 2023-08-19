@@ -168,6 +168,13 @@ function showQuestionAndPhrase(question) {
 
 function checkAnwers() {
 
+  var selectedOption = document.querySelector('input[type="radio"]:checked');
+  //Check if there is a radio input checked
+  if(!selectedOption) {
+      alert("Veuillez sélectionner votre réponse, s'il vous plaît !");
+      return;
+  }
+
   for (i = 0; i < inputsReponds.length; i++) {
     if (inputsReponds[i].checked) {
       checkValue = inputsReponds[i].value;
@@ -187,6 +194,8 @@ function checkAnwers() {
         validerButton.classList.add('hide');
         // Faire appaître le button Next
         nextButton.classList.remove('hide');
+        // previousButton.classList.remove('hide');
+
         // Stop compter le temps que le joueur a joué pour chaque question
         validerButton.onclick = StudentProgressVisualization();
 
@@ -214,6 +223,21 @@ function showScore() {
     announceScore.innerText = "Vous êtes au niveau avancé! " + "vous avez eu " + scoreCount + " sur " + shuffleQuestions.length + " bonnes réponses.";
   }
 }
+
+// var previousButton = document.getElementById('previous-btn');
+
+
+//Function to load previous question
+// function loadPreviousQuestion() {
+//     //Decrement quentions index
+//     currentQuestionIndex--;
+//     // //remove last array value;
+//     // score.pop();
+//     //Generate the question
+//     showQuestionAndPhrase(currentQuestionIndex);
+// }
+
+// previousButton.addEventListener('click',loadPreviousQuestion);
 
 
 // Clear screen before restart game
@@ -256,6 +280,8 @@ function clearScrrenAndRestartGame(test) {
 
 function resetState() {
   nextButton.classList.add('hide');
+  // previousButton.classList.add('hide');
+
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild
       (answerButtonsElement.firstChild)
@@ -311,6 +337,7 @@ function stopWatch() {
 
     validerButton.classList.add('hide');
     nextButton.classList.add('hide');
+    // previousButton.classList.add('hide');
     clearInterval(timerId);
 
     restartButton.classList.remove('hide');
@@ -515,6 +542,7 @@ function numbreAttemp() {
     validerButton.onclick = StudentProgressVisualization();
     validerButton.classList.add('hide');
     nextButton.classList.remove('hide');
+    // previousButton.classList.remove('hide');
 
   }
 
@@ -856,7 +884,7 @@ var quiz_Partie_Du_Discours = [{
 
 quiz_COD_COI = [
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "Il s\u2019 **en** souvient.",
       reponses: [
           {
@@ -890,7 +918,7 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "J' **y** pense.",
       reponses: [
           {
@@ -924,8 +952,8 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
-      phrase: "J' **en** moque.",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
+      phrase: "Je m' **en** moque.",
       reponses: [
           {
               texte: "Compl\u00e9ment circonstanciel de cause",
@@ -958,7 +986,7 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "Je **le** mange.",
       reponses: [
           {
@@ -992,41 +1020,7 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
-      phrase: "Il **me** verra.",
-      reponses: [
-          {
-              texte: "COD",
-              correct: true
-          },
-          {
-              texte: "Compl\u00e9ment d'agent",
-              correct: false
-          },
-          {
-              texte: "Compl\u00e9ment de lieu",
-              correct: false
-          },
-          {
-              texte: "Compl\u00e9ment de l'adjectif",
-              correct: false
-          },
-          {
-              texte: "COI",
-              correct: false
-          },
-          {
-              texte: "Compl\u00e9ment circonstanciel de cause",
-              correct: false
-          },
-          {
-              texte: "Compl\u00e9ments du nom",
-              correct: false
-          }
-      ]
-  },
-  {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "Je **t\u2019** ai dit que c\u2019 \u00e9tait urgent.",
       reponses: [
           {
@@ -1060,7 +1054,7 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "Il **les** prend dans ses bras.",
       reponses: [
           {
@@ -1094,7 +1088,7 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "Je **me** regarde dans le reflet de l\u2019 eau.",
       reponses: [
           {
@@ -1128,7 +1122,7 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "J' appelle **Cl\u00e9ment**.",
       reponses: [
           {
@@ -1162,41 +1156,7 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
-      phrase: "Je **te** demande de venir.",
-      reponses: [
-          {
-              texte: "COD",
-              correct: false
-          },
-          {
-              texte: "Compl\u00e9ment circonstanciel de cause",
-              correct: false
-          },
-          {
-              texte: "COI",
-              correct: true
-          },
-          {
-              texte: "Compl\u00e9ment de lieu",
-              correct: false
-          },
-          {
-              texte: "Compl\u00e9ment de l'adjectif",
-              correct: false
-          },
-          {
-              texte: "Compl\u00e9ments du nom",
-              correct: false
-          },
-          {
-              texte: "Compl\u00e9ment d'agent",
-              correct: false
-          }
-      ]
-  },
-  {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "J' aime la **musique**.",
       reponses: [
           {
@@ -1230,7 +1190,7 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "Pierre **lui** parle.",
       reponses: [
           {
@@ -1264,7 +1224,7 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "J' **en** parle.",
       reponses: [
           {
@@ -1298,7 +1258,7 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "Je **la** connais.",
       reponses: [
           {
@@ -1332,7 +1292,7 @@ quiz_COD_COI = [
       ]
   },
   {
-      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en gras, dans la phrase:",
+      question: "Donner la fonction de l'\u00e9l\u00e9ment figurant en rouge, dans la phrase:",
       phrase: "Je **te** ressemble.",
       reponses: [
           {
@@ -1500,33 +1460,113 @@ hideAccessibilitySettings.addEventListener('click', cacheAccessibility);
 
 const quizQuestions = [
   {
-    "phrase": "J'en parle",
-    "questionPourTrouverFonction":"de quoi je parle ?",
-    "analyses": {
-      "sujet": "J'",
-      "verbe": "parle ?",
-      "iobj": " de la mer => en"
-    }
+      "sentence": "J'appelle Cl\u00e9ment.",
+      "question": "J'appelle QUI? Clément",
+      "analyse": {
+          "sujet": "J'",
+          "verbe": "appelle",
+          "obj": "Cl\u00e9ment"
+      }
   },
   {
-    "phrase": "J'aime clément",
-    "questionPourTrouverFonction":"aime QUI ?",
-    "analyses": {
-      "sujet": "J'",
-      "verbe": "aime",
-      "obj": "qui => clément"
-    }
+      "sentence": "J'aime la musique.",
+      "question": "J'aime QUOI? musique",
+      "analyse": {
+          "sujet": "J'",
+          "verbe": "aime",
+          "obj": "musique"
+      }
   },
   {
-    "phrase": "Pierre lui parle.",
-    "questionPourTrouverFonction":"à qui Pierre parle ?",
-    "analyses": {
-      "sujet": "Pierre",
-      "verbe": "parle",
-      "iobj": "à qui => lui"
+      "sentence": "Je le mange.",
+      "question": "Je mange QUOI? Un sandwich",
+      "analyse": {
+          "sujet": "Je",
+          "obj": "le",
+          "verbe": "mange"
+      }
+  },
+  {
+      "sentence": "Je la connais.",
+      "question": "Je connais QUI? Marie",
+      "analyse": {
+          "sujet": "Je",
+          "obj": "la",
+          "verbe": "connais"
+      }
+  },
+  {
+      "sentence": "Il les prend dans ses bras.",
+      "question": "Il prend QUOI dans ses bras? Les enfants",
+      "analyse": {
+          "sujet": "Il",
+          "obj": "les",
+          "verbe": "prend"
+      }
+  },
+  {
+      "sentence": "Je me regarde dans le reflet de l\u2019eau.",
+      "question": "Je regarde QUI? moi-même",
+      "analyse": {
+          "sujet": "Je",
+          "obj": "me",
+          "verbe": "regarde"
+      }
+  },
+  {
+      "sentence": "Pierre lui parle.",
+      "question": "Pirerre parle À QUI? À son ami",
+      "analyse": {
+          "sujet": "Pierre",
+          "iobj": "lui",
+          "verbe": "parle"
+      }
+  },
+  {
+      "sentence": "J'en parle.",
+      "question": "Je parle DE QUOI? De mon voyage en Europe",
+      "analyse": {
+          "sujet": "J'",
+          "iobj": "en",
+          "verbe": "parle"
+      }
+  },
+  {
+      "sentence": "Je te ressemble.",
+      "question": "Je ressemble À QUI ? la personne À QUI je parle (te)",
+      "analyse": {
+          "sujet": "Je",
+          "iobj": "te",
+          "verbe": "ressemble"
+      }
+  },
+  {
+      "sentence": "J'y pense.",
+      "question": "Je pense À QUOI? À ma famille",
+      "analyse": {
+          "sujet": "J'",
+          "iobj": "y",
+          "verbe": "pense"
+      }
+  },
+  {
+      "sentence": "Je m'en moque.",
+      "question": "Je me moque DE QUOI? De la mode",
+      "analyse": {
+          "sujet": "J'",
+          "iobj": "en",
+          "verbe": "moque"
+      }
+  },
+  {
+      "sentence": "Il s\u2019en souvient.",
+      "question": "Il se souvient DE QUOI? De sa vie",
+      "analyse": {
+          "sujet": "Il",
+          "iobj": "en",
+          "verbe": "souvient"
+      }
   }
-  }
-  
 ];
 
 
@@ -1550,23 +1590,23 @@ function showCorrection() {
     const coiCell = row.insertCell(4);
     const codCell = row.insertCell(5);
     
-    phraseCell.textContent = question.phrase;
-    questionCell.textContent = question.questionPourTrouverFonction;
-    sujetCell.textContent = question.analyses.sujet || "";
-    verbeCell.textContent = question.analyses.verbe || "";
-    coiCell.textContent = question.analyses.iobj || "";
-    codCell.textContent = question.analyses.obj || "";
+    phraseCell.textContent = question.sentence;
+    questionCell.textContent = question.question;
+    sujetCell.textContent = question.analyse.sujet || "";
+    verbeCell.textContent = question.analyse.verbe || "";
+    coiCell.textContent = question.analyse.iobj || "";
+    codCell.textContent = question.analyse.obj || "";
     
-    if (question.analyses.sujet) {
+    if (question.analyse.sujet) {
       sujetCell.classList.add("yellow-bg");
     }
-    if (question.analyses.verbe) {
+    if (question.analyse.verbe) {
       verbeCell.classList.add("green-bg");
     }
-    if (question.analyses.iobj) {
+    if (question.analyse.iobj) {
       coiCell.classList.add("orange-bg");
     }
-    if (question.analyses.obj) {
+    if (question.analyse.obj) {
       codCell.classList.add("red-bg");
     }
   });
