@@ -1458,6 +1458,9 @@ function cacheAccessibility() {
 accessibility.addEventListener('click', afficheAccessibility);
 hideAccessibilitySettings.addEventListener('click', cacheAccessibility);
 
+
+// POUR LA PARTIE DE CORRECTION DE LA FONCTION COD ET COI
+
 const quizQuestions = [
   {
       "sentence": "J'appelle Cl\u00e9ment.",
@@ -1571,46 +1574,82 @@ const quizQuestions = [
 
 
 var quizContainer = document.getElementById("quizContainer");
-var correctionTable = document.getElementById("correctionTable");
+var correctionTable = document.getElementById("correction");
+
+var codParagraph = document.getElementById('tableauCorrectionCOD');
+var coiParagraph = document.getElementById('tableauCorrectionCOI');
+
+var codPhrases = [];
+var row;
+var phraseCell;
+var questionCell;
+var sujetCell;
+var verbeCell;
+var coiCell;
+var codCell ;
 
 showCorrectionButton.addEventListener("click", showCorrection);
 
-function showCorrection() {
 
-  contenuPrincipal.innerHTML = ""; 
+function showCorrection() {
+ 
+  showCorrectionButton.style.display = "none"; 
+  contenuPrincipal.style.display = "none"; 
   chartContainer.innerHTML = ""; 
 
-  quizQuestions.forEach(question => {
-    const row = correctionTable.insertRow();
-    
-    const phraseCell = row.insertCell(0);
-    const questionCell = row.insertCell(1);
-    const sujetCell = row.insertCell(2);
-    const verbeCell = row.insertCell(3);
-    const coiCell = row.insertCell(4);
-    const codCell = row.insertCell(5);
-    
-    phraseCell.textContent = question.sentence;
-    questionCell.textContent = question.question;
-    sujetCell.textContent = question.analyse.sujet || "";
-    verbeCell.textContent = question.analyse.verbe || "";
-    coiCell.textContent = question.analyse.iobj || "";
-    codCell.textContent = question.analyse.obj || "";
-    
+quizQuestions.forEach(question => {
+
+    row = codParagraph.insertRow();
+
+    if ("obj" in question.analyse) {
+
+        questionCell = row.insertCell(0);
+        phraseCell = row.insertCell(1);
+        sujetCell = row.insertCell(2);
+        verbeCell = row.insertCell(3);
+        codCell = row.insertCell(4);   
+        
+        phraseCell.textContent = question.sentence;
+        questionCell.textContent = question.question;
+        sujetCell.textContent = question.analyse.sujet || "";
+        verbeCell.textContent = question.analyse.verbe || "";
+        codCell.textContent = question.analyse.obj || "";
+
+    }
+
+    var row2 = coiParagraph.insertRow();
+
+    if ("iobj" in question.analyse) {
+
+        questionCell = row2.insertCell(0);
+        phraseCell = row2.insertCell(1);
+        sujetCell = row2.insertCell(2);
+        coiCell = row2.insertCell(3);   
+        verbeCell = row2.insertCell(4);
+        
+        phraseCell.textContent = question.sentence;
+        questionCell.textContent = question.question;
+        sujetCell.textContent = question.analyse.sujet || "";
+        verbeCell.textContent = question.analyse.verbe || "";
+        coiCell.textContent = question.analyse.iobj || "";
+
+    }
+
     if (question.analyse.sujet) {
-      sujetCell.classList.add("yellow-bg");
-    }
-    if (question.analyse.verbe) {
-      verbeCell.classList.add("green-bg");
-    }
-    if (question.analyse.iobj) {
-      coiCell.classList.add("orange-bg");
-    }
-    if (question.analyse.obj) {
-      codCell.classList.add("red-bg");
-    }
+        sujetCell.classList.add("yellow-bg");
+      }
+      if (question.analyse.verbe) {
+        verbeCell.classList.add("green-bg");
+      }
+      if (question.analyse.iobj) {
+        coiCell.classList.add("orange-bg");
+      }
+      if (question.analyse.obj) {
+        codCell.classList.add("red-bg");
+      }
   });
-  
   correctionTable.style.display = "block";
   quizContainer.style.display = "none";
+
+  
 }

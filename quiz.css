@@ -104,26 +104,6 @@ input[type="radio"] {
 label {
     margin-right: 500px;
 }
-table {
-    width: 50%;
-    border-collapse: collapse;
-   margin: 54%;
-}  
- table, td {
-    border: 24px solid;
-    width: 70%;
-    margin-left: 42%;
-}
-
-th, td {
-    text-align: center;
-    padding: 18px;
-}
-      
-th {
-    background-color: #04AA6D;
-    color: white;
-  }
 /* tr {background-color: #fbbe16;} */
 #timeQuestionAttemps {
     height: 771px;
@@ -355,4 +335,49 @@ margin-left: -2%;
     min-height: 800px;
   }
 
+}
+
+/* tableau correction */
+
+#cod, #coi {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px;
+}
+table {
+  margin-top: 20px;
+}
+
+th, td {
+  border: 16px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.yellow-bg {
+  background-color: yellow;
+}
+
+.green-bg {
+  background-color:#8fe38f;;
+}
+
+.red-bg {
+  background-color: red;
+}
+
+.orange-bg {
+  background-color: orange;
+}
+#correction {
+  margin-left: -53%;
+}
+.titreFonction {
+  text-transform: uppercase;
+  margin-left: 22%;
+  font-weight: bold;
 }

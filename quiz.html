@@ -129,7 +129,7 @@
                 <div class="w3-light-grey">
                     <div id="myBar" style="height:50px;width:0;"></div>
                 </div>
-                <button style="margin-top: 2%;" onclick="window.open('parseTree.html', '_blank').focus();">Voir la syntaxe de la phrase</button>
+                <!-- <button style="margin-top: 2%;" onclick="window.open('parseTree.html', '_blank').focus();">Voir la syntaxe de la phrase</button> -->
 
             </div>
 
@@ -153,22 +153,43 @@
         </div>
         
         <button id="showCorrectionButton" style="display: none;">Voir la Correction</button>
-        <table id="correctionTable" style="display: none;">
-    <!-- Tableau de correction à afficher ici -->
-          <thead>
-            <tr>
-              <th>Phrase</th>
-              <th>Question pour trouver la fonction</th>
-              <th>Sujet</th>
-              <th>Verbe</th>
-              <th>COI</th>
-              <th>COD</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Le contenu sera généré dynamiquement en JavaScript -->
-          </tbody>
-        </table>
+          <div id="correction" style="display: none;">
+                
+                  <div id="cod">
+                    <h3 class = "titreFonction">Complément d'Objet Direct (COD):</h3>
+                    <table id="tableauCorrectionCOD">
+                                    <thead>
+                                      <tr>
+                                        <th>Phrase</th>
+                                        <th>Question pour trouver la fonction</th>
+                                        <th>Sujet</th>
+                                        <th>Verbe</th>
+                                        <th>COD</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                  </table> 
+                  </div>
+
+                  <div id="coi">
+                    <h3 class = "titreFonction"> Complément d'Objet Indirect (COI):</h3>
+                    <table id="tableauCorrectionCOI">
+                                    <thead>
+                                      <tr>
+                                        <th>Question pour trouver la fonction</th>
+                                        <th>Phrase</th>
+                                        <th>Sujet</th>
+                                        <th>COI</th>
+                                        <th>Verbe</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                  </table> 
+                  </div>
+            </div>
+
         <script src="quiz.js"></script>
       </div>
     </body>
