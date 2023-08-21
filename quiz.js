@@ -99,6 +99,8 @@ function startGame(arguments) {
 }
 
 var showCorrectionButton = document.getElementById("showCorrectionButton");
+// var showParsingButton = document.getElementById("showParsingButton");
+
 
 function setNextQuestion() {
 
@@ -118,6 +120,9 @@ function setNextQuestion() {
 
     restartButton.classList.remove('hide');
     showCorrectionButton.style.display = "block";
+    // showParsingButton.style.display = "block";
+    parsing.style.display = "block";
+
 
   } else {
     showQuestionAndPhrase(shuffleQuestions[currentQuestionIndex]);
@@ -1588,10 +1593,9 @@ var verbeCell;
 var coiCell;
 var codCell ;
 
-showCorrectionButton.addEventListener("click", showCorrection);
+showCorrectionButton.addEventListener("click", showCorrectionCOD_COI);
 
-
-function showCorrection() {
+function showCorrectionCOD_COI() {
  
   showCorrectionButton.style.display = "none"; 
   contenuPrincipal.style.display = "none"; 
@@ -1653,3 +1657,9 @@ quizQuestions.forEach(question => {
 
   
 }
+
+var parsing = document.getElementById('parsing');
+
+// showParsingButton.addEventListener("click", function() {
+  // parsing.style.display = "block";
+// }); 

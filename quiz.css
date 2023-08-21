@@ -27,8 +27,9 @@ body {
     border-radius: 15px;
     box-shadow: 0 0 10px 2px;
     padding: 20px;
-    margin-left: 6%;
+    margin-left: -1%;
     margin-top: 3%;
+    margin-right: 2%;
 }
 .btn-gird {
     display: grid;
@@ -89,7 +90,7 @@ body {
   }
 #restart-btn {
  margin-bottom: -35%;
- margin-left: -52%;
+ /* margin-left: -52%; */
 }
 .KeyWord {
     color: red;
@@ -255,10 +256,11 @@ input[type=color]{
   padding: 10px;
 }
 #chart-container{
- margin-left:2%;
+ /* margin-left:2%; */
  margin-top:1%;
-
+ margin-right: 4%;
 }
+
 #feedBack {
   margin-left: 1%;
   padding: 6px;
