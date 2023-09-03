@@ -2,17 +2,7 @@
 // cOMMENT RECONSTRUIRE LA TABLEAU DE VISUALISATION APRÈS RESTART LES JEUX
 // Pourquoi quand on restart de de QUIZ Partie du discours; on a le quiz de COD et COI mais n'est pas la partie du discours? 
 
-// • La fonction "startGame()" pour démarrer le Quiz.
-// • La fonction "ShowQuestionAndPhrase()" pour afficher le nombre de questions, les phrases et les réponses.
-// • La fonction "setNextQuestion()" pour passer à la question suivante.
-// • La fonction "checkAnswers()" pour permettre à l'utilisateur de vérifier si sa réponse est correcte ou non.
-// • La fonction "showScore()" pour afficher le niveau obtenu par l'étudiant après avoir terminé le Quiz.
-// • La fonction "restartQuiz()" pour permettre à l'utilisateur de recommencer le Quiz.
-// • La fonction "stopWatch()" pour limiter le temps de réponse pour une liste de question.
 
-
-// var displayContainer = document.getElementB
-// Question, answer, score
 var modifie_fontCouleur_fontSize = document.getElementById('modifie_fontCouleur_fontSize');
 var questionContainerElement = document.getElementById('question-container');
 var shuffleQuestions, scoreCount;
@@ -38,7 +28,7 @@ var feedBack = document.getElementById('feedBack');
 var timer = document.getElementById("timer");
 let [seconds, minutes] = [0, 0];
 let timerId;
-var timeOutMinutes = 10;
+var timeOutMinutes = 5;
 
 var quizEnded = false;
 
@@ -72,11 +62,11 @@ function startGame(arguments) {
 
   timerId = setInterval(stopWatch, 1000);
 
-  timer.innerHTML = "10:00";
+  timer.innerHTML = "5:00";
 
   // console.log(currentQuestionIndex);
   [seconds, minutes] = [0, 0];
-  timeOutMinutes = 10;
+  timeOutMinutes = 5;
 
 
   // cacher le button Start
@@ -120,6 +110,7 @@ function setNextQuestion() {
 
     restartButton.classList.remove('hide');
     showCorrectionButton.style.display = "block";
+    // buttonArbreSyntaxique.style.display= "block";
     // showParsingButton.style.display = "block";
     parsing.style.display = "block";
 
@@ -328,8 +319,8 @@ function stopWatch() {
     seconds = 59;
     timeOutMinutes = minutes;
   }
-  let m = minutes < 10 ? "0" + minutes : minutes;
-  let s = seconds < 10 ? "0" + seconds : seconds;
+  let m = minutes < 5 ? "0" + minutes : minutes;
+  let s = seconds < 5 ? "0" + seconds : seconds;
 
   timer.innerHTML = m + ":" + s;
 
@@ -372,7 +363,7 @@ mixedChart = new Chart(ctx, {
         data: [],
         backgroundColor: [],
               datalabels: {
-        formatter: (val) => (`${val} essais`),
+        formatter: (val) => (`${val}`),
         labels: {
           value: {
             color: 'white',
@@ -386,11 +377,11 @@ mixedChart = new Chart(ctx, {
       {
         type: 'bar',
         plugins: [ChartDataLabels],
-        label: 'Temps de réponse',
+        label: 'Temps de réponse (en seconde)',
         data: [],
         backgroundColor: [],
         datalabels: {
-          formatter: (val) => (`${val} secondes`),
+          formatter: (val) => (`${val} s`),
           labels: {
             value: {
               color: 'white',
@@ -528,13 +519,13 @@ function StudentProgressVisualization() {
 function convertSec(cnt) {
   let sec = cnt % 60;
   let min = Math.floor(cnt / 60);
-  if (sec < 10) {
-    if (min < 10) {
+  if (sec < 5) {
+    if (min < 5) {
       return "0" + min + ":0" + sec;
     } else {
       return min + ":0" + sec;
     }
-  } else if ((min < 10) && (sec >= 10)) {
+  } else if ((min < 5) && (sec >= 5)) {
     return "0" + min + ":" + sec;
   } else {
     return min + ":" + sec;
@@ -584,292 +575,292 @@ function numbreAttemp() {
 
 
 var quiz_Partie_Du_Discours = [
-//  { question: "Donner la partie du discours du mot **garantir** dans la phrase:",
-//   phrase: "Pour **garantir** une concurrence loyale , il convient que ces mesures soient prises au niveau international . ",
-//   reponses: [{
-//     texte: "ADV_Int",
-//     correct: false
-//   }, {
-//     texte: "ADV",
-//     correct: false
-//   }, {
-//     texte: "ADJ_Excl/Int",
-//     correct: false
-//   }, {
-//     texte: "V_Inf",
-//     correct: true
-//   }, {
-//     texte: "ADJ",
-//     correct: false
-//   }, {
-//     texte: "Conj_de_Coord",
-//     correct: false
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **loyale** dans la phrase:",
-//   phrase: "Pour garantir une concurrence **loyale** , il convient que ces mesures soient prises au niveau international . ",
-//   reponses: [{
-//     texte: "DET",
-//     correct: false
-//   }, {
-//     texte: "PRO_Int",
-//     correct: false
-//   }, {
-//     texte: "ADJ",
-//     correct: true
-//   }, {
-//     texte: "V_Part_Pr\u00e9s",
-//     correct: false
-//   }, {
-//     texte: "NC",
-//     correct: false
-//   }, {
-//     texte: "DET_Int",
-//     correct: false
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **il** dans la phrase:",
-//   phrase: "Pour garantir une concurrence loyale , **il** convient que ces mesures soient prises au niveau international . ",
-//   reponses: [{
-//     texte: "PRO_Suj",
-//     correct: true
-//   }, {
-//     texte: "DET_Int",
-//     correct: false
-//   }, {
-//     texte: "PRO_Rel",
-//     correct: false
-//   }, {
-//     texte: "V_Subj",
-//     correct: false
-//   }, {
-//     texte: "V_Imp",
-//     correct: false
-//   }, {
-//     texte: "PRO_Obj",
-//     correct: false
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **convient** dans la phrase:",
-//   phrase: "Pour garantir une concurrence loyale , il **convient** que ces mesures soient prises au niveau international . ",
-//   reponses: [{
-//     texte: "Conj_de_Sub",
-//     correct: false
-//   }, {
-//     texte: "V",
-//     correct: true
-//   }, {
-//     texte: "PRO_Int",
-//     correct: false
-//   }, {
-//     texte: "Mot_\u00e9tranger",
-//     correct: false
-//   }, {
-//     texte: "Conj_de_Coord",
-//     correct: false
-//   }, {
-//     texte: "DET",
-//     correct: false
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **que** dans la phrase:",
-//   phrase: "Pour garantir une concurrence loyale , il convient **que** ces mesures soient prises au niveau international . ",
-//   reponses: [{
-//     texte: "PREP_+_DET",
-//     correct: false
-//   }, {
-//     texte: "Conj_de_Sub",
-//     correct: true
-//   }, {
-//     texte: "Interj",
-//     correct: false
-//   }, {
-//     texte: "PRO_Obj",
-//     correct: false
-//   }, {
-//     texte: "ADV",
-//     correct: false
-//   }, {
-//     texte: "Conj_de_Coord",
-//     correct: false
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **prises** dans la phrase:",
-//   phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient **prises** au niveau international . ",
-//   reponses: [{
-//     texte: "Interj",
-//     correct: false
-//   }, {
-//     texte: "Pr\u00e9f",
-//     correct: false
-//   }, {
-//     texte: "ADV_Int",
-//     correct: false
-//   }, {
-//     texte: "PREP_+_DET",
-//     correct: false
-//   }, {
-//     texte: "DET_Int",
-//     correct: false
-//   }, {
-//     texte: "V_Part_Pass\u00e9",
-//     correct: true
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **au** dans la phrase:",
-//   phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient prises **au** niveau international . ",
-//   reponses: [{
-//     texte: "V_Imp",
-//     correct: false
-//   }, {
-//     texte: "V_Inf",
-//     correct: false
-//   }, {
-//     texte: "ADV",
-//     correct: false
-//   }, {
-//     texte: "PREP_+_DET",
-//     correct: true
-//   }, {
-//     texte: "Conj_de_Sub",
-//     correct: false
-//   }, {
-//     texte: "Conj_de_Coord",
-//     correct: false
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **international** dans la phrase:",
-//   phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient prises au niveau **international** . ",
-//   reponses: [{
-//     texte: "ADJ",
-//     correct: true
-//   }, {
-//     texte: "ADV",
-//     correct: false
-//   }, {
-//     texte: "V_Subj",
-//     correct: false
-//   }, {
-//     texte: "DET_Int",
-//     correct: false
-//   }, {
-//     texte: "PRO_R\u00e9fl",
-//     correct: false
-//   }, {
-//     texte: "ADJ_Excl/Int",
-//     correct: false
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **qui** dans la phrase:",
-//   phrase: "La proposition de r\u00e9solution , **qui** insiste , entre autres , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-//   reponses: [{
-//     texte: "PRO_Rel",
-//     correct: true
-//   }, {
-//     texte: "PRO",
-//     correct: false
-//   }, {
-//     texte: "PRO_R\u00e9fl",
-//     correct: false
-//   }, {
-//     texte: "V_Imp",
-//     correct: false
-//   }, {
-//     texte: "Interj",
-//     correct: false
-//   }, {
-//     texte: "PREP",
-//     correct: false
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **insiste** dans la phrase:",
-//   phrase: "La proposition de r\u00e9solution , qui **insiste** , entre autres , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-//   reponses: [{
-//     texte: "ADV_Int",
-//     correct: false
-//   }, {
-//     texte: "PRO_Rel",
-//     correct: false
-//   }, {
-//     texte: "V_Part_Pass\u00e9",
-//     correct: false
-//   }, {
-//     texte: "V",
-//     correct: true
-//   }, {
-//     texte: "PREP",
-//     correct: false
-//   }, {
-//     texte: "PRO_R\u00e9fl",
-//     correct: false
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **autres** dans la phrase:",
-//   phrase: "La proposition de r\u00e9solution , qui insiste , entre **autres** , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-//   reponses: [{
-//     texte: "PRO",
-//     correct: true
-//   }, {
-//     texte: "V_Imp",
-//     correct: false
-//   }, {
-//     texte: "Mot_\u00e9tranger",
-//     correct: false
-//   }, {
-//     texte: "Pr\u00e9f",
-//     correct: false
-//   }, {
-//     texte: "Conj_de_Sub",
-//     correct: false
-//   }, {
-//     texte: "DET_Int",
-//     correct: false
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **que** dans la phrase:",
-//   phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour **que** le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-//   reponses: [{
-//     texte: "PRO_Rel",
-//     correct: false
-//   }, {
-//     texte: "V_Part_Pr\u00e9s",
-//     correct: false
-//   }, {
-//     texte: "NPr",
-//     correct: false
-//   }, {
-//     texte: "DET_Int",
-//     correct: false
-//   }, {
-//     texte: "ADJ_Excl/Int",
-//     correct: false
-//   }, {
-//     texte: "Conj_de_Sub",
-//     correct: true
-//   }]
-// }, {
-//   question: "Donner la partie du discours du mot **des** dans la phrase:",
-//   phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour que le niveau **des** nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
-//   reponses: [{
-//     texte: "ADJ_Excl/Int",
-//     correct: false
-//   }, {
-//     texte: "V_Subj",
-//     correct: false
-//   }, {
-//     texte: "PREP_+_DET",
-//     correct: true
-//   }, {
-//     texte: "PRO_Obj",
-//     correct: false
-//   }, {
-//     texte: "PRO_Int",
-//     correct: false
-//   }, {
-//     texte: "V_Part_Pass\u00e9",
-//     correct: false
-//   }]
-// }, 
+ { question: "Donner la partie du discours du mot **garantir** dans la phrase:",
+  phrase: "Pour **garantir** une concurrence loyale , il convient que ces mesures soient prises au niveau international . ",
+  reponses: [{
+    texte: "ADV_Int",
+    correct: false
+  }, {
+    texte: "ADV",
+    correct: false
+  }, {
+    texte: "ADJ_Excl/Int",
+    correct: false
+  }, {
+    texte: "V_Inf",
+    correct: true
+  }, {
+    texte: "ADJ",
+    correct: false
+  }, {
+    texte: "Conj_de_Coord",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **loyale** dans la phrase:",
+  phrase: "Pour garantir une concurrence **loyale** , il convient que ces mesures soient prises au niveau international . ",
+  reponses: [{
+    texte: "DET",
+    correct: false
+  }, {
+    texte: "PRO_Int",
+    correct: false
+  }, {
+    texte: "ADJ",
+    correct: true
+  }, {
+    texte: "V_Part_Pr\u00e9s",
+    correct: false
+  }, {
+    texte: "NC",
+    correct: false
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **il** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , **il** convient que ces mesures soient prises au niveau international . ",
+  reponses: [{
+    texte: "PRO_Suj",
+    correct: true
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }, {
+    texte: "PRO_Rel",
+    correct: false
+  }, {
+    texte: "V_Subj",
+    correct: false
+  }, {
+    texte: "V_Imp",
+    correct: false
+  }, {
+    texte: "PRO_Obj",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **convient** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , il **convient** que ces mesures soient prises au niveau international . ",
+  reponses: [{
+    texte: "Conj_de_Sub",
+    correct: false
+  }, {
+    texte: "V",
+    correct: true
+  }, {
+    texte: "PRO_Int",
+    correct: false
+  }, {
+    texte: "Mot_\u00e9tranger",
+    correct: false
+  }, {
+    texte: "Conj_de_Coord",
+    correct: false
+  }, {
+    texte: "DET",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **que** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , il convient **que** ces mesures soient prises au niveau international . ",
+  reponses: [{
+    texte: "PREP_+_DET",
+    correct: false
+  }, {
+    texte: "Conj_de_Sub",
+    correct: true
+  }, {
+    texte: "Interj",
+    correct: false
+  }, {
+    texte: "PRO_Obj",
+    correct: false
+  }, {
+    texte: "ADV",
+    correct: false
+  }, {
+    texte: "Conj_de_Coord",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **prises** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient **prises** au niveau international . ",
+  reponses: [{
+    texte: "Interj",
+    correct: false
+  }, {
+    texte: "Pr\u00e9f",
+    correct: false
+  }, {
+    texte: "ADV_Int",
+    correct: false
+  }, {
+    texte: "PREP_+_DET",
+    correct: false
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }, {
+    texte: "V_Part_Pass\u00e9",
+    correct: true
+  }]
+}, {
+  question: "Donner la partie du discours du mot **au** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient prises **au** niveau international . ",
+  reponses: [{
+    texte: "V_Imp",
+    correct: false
+  }, {
+    texte: "V_Inf",
+    correct: false
+  }, {
+    texte: "ADV",
+    correct: false
+  }, {
+    texte: "PREP_+_DET",
+    correct: true
+  }, {
+    texte: "Conj_de_Sub",
+    correct: false
+  }, {
+    texte: "Conj_de_Coord",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **international** dans la phrase:",
+  phrase: "Pour garantir une concurrence loyale , il convient que ces mesures soient prises au niveau **international** . ",
+  reponses: [{
+    texte: "ADJ",
+    correct: true
+  }, {
+    texte: "ADV",
+    correct: false
+  }, {
+    texte: "V_Subj",
+    correct: false
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }, {
+    texte: "PRO_R\u00e9fl",
+    correct: false
+  }, {
+    texte: "ADJ_Excl/Int",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **qui** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , **qui** insiste , entre autres , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "PRO_Rel",
+    correct: true
+  }, {
+    texte: "PRO",
+    correct: false
+  }, {
+    texte: "PRO_R\u00e9fl",
+    correct: false
+  }, {
+    texte: "V_Imp",
+    correct: false
+  }, {
+    texte: "Interj",
+    correct: false
+  }, {
+    texte: "PREP",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **insiste** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , qui **insiste** , entre autres , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "ADV_Int",
+    correct: false
+  }, {
+    texte: "PRO_Rel",
+    correct: false
+  }, {
+    texte: "V_Part_Pass\u00e9",
+    correct: false
+  }, {
+    texte: "V",
+    correct: true
+  }, {
+    texte: "PREP",
+    correct: false
+  }, {
+    texte: "PRO_R\u00e9fl",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **autres** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , qui insiste , entre **autres** , pour que le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "PRO",
+    correct: true
+  }, {
+    texte: "V_Imp",
+    correct: false
+  }, {
+    texte: "Mot_\u00e9tranger",
+    correct: false
+  }, {
+    texte: "Pr\u00e9f",
+    correct: false
+  }, {
+    texte: "Conj_de_Sub",
+    correct: false
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }]
+}, {
+  question: "Donner la partie du discours du mot **que** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour **que** le niveau des nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "PRO_Rel",
+    correct: false
+  }, {
+    texte: "V_Part_Pr\u00e9s",
+    correct: false
+  }, {
+    texte: "NPr",
+    correct: false
+  }, {
+    texte: "DET_Int",
+    correct: false
+  }, {
+    texte: "ADJ_Excl/Int",
+    correct: false
+  }, {
+    texte: "Conj_de_Sub",
+    correct: true
+  }]
+}, {
+  question: "Donner la partie du discours du mot **des** dans la phrase:",
+  phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour que le niveau **des** nuisances acoustiques \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
+  reponses: [{
+    texte: "ADJ_Excl/Int",
+    correct: false
+  }, {
+    texte: "V_Subj",
+    correct: false
+  }, {
+    texte: "PREP_+_DET",
+    correct: true
+  }, {
+    texte: "PRO_Obj",
+    correct: false
+  }, {
+    texte: "PRO_Int",
+    correct: false
+  }, {
+    texte: "V_Part_Pass\u00e9",
+    correct: false
+  }]
+}, 
 {
   question: "Donner la partie du discours du mot **acoustiques** dans la phrase:",
   phrase: "La proposition de r\u00e9solution , qui insiste , entre autres , pour que le niveau des nuisances **acoustiques** \u00e0 proximit\u00e9 des divers a\u00e9roports soit divulgu\u00e9 , constitue un pas en avant dans la bonne direction . ",
@@ -1635,7 +1626,10 @@ quizQuestions.forEach(question => {
 
     row = codParagraph.insertRow();
 
+
     if ("obj" in question.analyse) {
+
+        console.log(question.analyse);
 
         questionCell = row.insertCell(0);
         phraseCell = row.insertCell(1);
@@ -1690,6 +1684,21 @@ quizQuestions.forEach(question => {
 
 var parsing = document.getElementById('parsing');
 
-// showParsingButton.addEventListener("click", function() {
-  // parsing.style.display = "block";
-// }); 
+showParsingButton.addEventListener("click", function() {
+  parsing.style.display = "block";
+}); 
+
+// var buttonArbreSyntaxique = document.getElementById('buttonArbreSyntaxique');
+// var arbreSyntaxique = document.getElementById('arbreSyntaxique');
+
+// buttonArbreSyntaxique.addEventListener('click',showArbreSyntaxique);
+
+// function showArbreSyntaxique() {
+//   showCorrectionButton.style.display = "none"; 
+//   buttonArbreSyntaxique.style.display = "none";
+//   contenuPrincipal.style.display = "none"; 
+//   chartContainer.innerHTML = ""; 
+
+//   arbreSyntaxique.style.display = "block";
+
+// }
