@@ -1,0 +1,106 @@
+[
+    {
+        "sentence": "J'appelle Cl\u00e9ment.",
+        "analyse": {
+            "sujet": "J'",
+            "verbe": "appelle",
+            "obj": "Cl\u00e9ment"
+        }
+    },
+    {
+        "sentence": "J'aime la musique.",
+        "analyse": {
+            "sujet": "J'",
+            "verbe": "aime",
+            "obj": "musique"
+        }
+    },
+    {
+        "sentence": "Je le mange.",
+        "analyse": {
+            "sujet": "Je",
+            "obj": "le",
+            "verbe": "mange"
+        }
+    },
+    {
+        "sentence": "Je la connais.",
+        "analyse": {
+            "sujet": "Je",
+            "obj": "la",
+            "verbe": "connais"
+        }
+    },
+    {
+        "sentence": "Il les prend dans ses bras.",
+        "analyse": {
+            "sujet": "Il",
+            "obj": "les",
+            "verbe": "prend"
+        }
+    },
+    {
+        "sentence": "Je me regarde dans le reflet de l\u2019eau.",
+        "analyse": {
+            "sujet": "Je",
+            "obj": "me",
+            "verbe": "regarde"
+        }
+    },
+    {
+        "sentence": "Pierre lui parle.",
+        "analyse": {
+            "sujet": "Pierre",
+            "iobj": "lui",
+            "verbe": "parle"
+        }
+    },
+    {
+        "sentence": "J'en parle.",
+        "analyse": {
+            "sujet": "J'",
+            "iobj": "en",
+            "verbe": "parle"
+        }
+    },
+    {
+        "sentence": "Je te ressemble.",
+        "analyse": {
+            "sujet": "Je",
+            "iobj": "te",
+            "verbe": "ressemble"
+        }
+    },
+    {
+        "sentence": "J'y pense.",
+        "analyse": {
+            "sujet": "J'",
+            "iobj": "y",
+            "verbe": "pense"
+        }
+    },
+    {
+        "sentence": "Je m'en moque.",
+        "analyse": {
+            "sujet": "Je",
+            "iobj": "en",
+            "verbe": "moque"
+        }
+    },
+    {
+        "sentence": "Il s\u2019en souvient.",
+        "analyse": {
+            "sujet": "Il",
+            "iobj": "en",
+            "verbe": "souvient"
+        }
+    },
+    {
+        "sentence": "Je t\u2019ai dit que c\u2019\u00e9tait urgent.",
+        "analyse": {
+            "sujet": "Je",
+            "iobj": "t\u2019",
+            "verbe": "dit"
+        }
+    }
+]
